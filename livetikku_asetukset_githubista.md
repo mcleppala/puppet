@@ -14,8 +14,7 @@ sudo apt-get update
 sudo apt-get install -y puppet tree git
 git clone https://github.com/mcleppala/puppet
 
-cd /puppet/puppet/
-sudo cp -r /home/xubuntu/puppet/manifests /etc/puppet/manifests
+sudo cp -r /home/xubuntu/puppet/modules /etc/puppet/modules
 sudo cp -r /home/xubuntu/puppet/manifests /etc/puppet/manifests
 ```
 
