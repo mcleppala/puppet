@@ -8,8 +8,7 @@ Tätä aloitinkin jo tekemään tunnilla, pääsin jo melko pitkälle, mutta aik
 
 Materiaaleissa oli linkki myös kurssikaverin [GitHub-sivustolle](https://github.com/poponappi/essential-tools/blob/master/essentialtools.sh) ja katsoin hänen tekemäänsä skriptiä. Huomasin, että olinkin omasta tiedostostani unohtanut aikavyöhykkeen asetukset, joten lisäsin sen myös omaani. Sen jälkeen tein haluamani tiedostojen kopioinnit ja alla valmis skripti. 
 
-'''
-
+```
 setxkbmap fi
 sudo apt-get update
 sudo apt-get install -y puppet tree git
@@ -18,8 +17,7 @@ git clone https://github.com/mcleppala/puppet
 cd /puppet/puppet/
 sudo cp -r /home/xubuntu/puppet/manifests /etc/puppet/manifests
 sudo cp -r /home/xubuntu/puppet/manifests /etc/puppet/manifests
-
-'''
+```
 
 b) Kokeile Puppetin master-slave arkkitehtuuria kahdella koneella. Liitä raporttiisi listaus avaimista (sudo puppet cert list) ja pätkä herran http-lokista (sudo tail -5 /var/log/puppet/masterhttp.log).
 
