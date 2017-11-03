@@ -31,7 +31,7 @@ sudo cp -r /home/xubuntu/puppet/modules /etc/puppet/modules
 sudo cp -r /home/xubuntu/puppet/manifests /etc/puppet/manifests
 ```
 
-Sen jälkeen tein haluamani tiedostojen kopioinnit ja alla valmis skripti (tai avaa linkistä tiedosto). 
+Alla valmis [skripti]() (tai avaa linkistä tiedosto). 
 
 ```bash
 echo "***************************"
