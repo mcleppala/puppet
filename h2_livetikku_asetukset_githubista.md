@@ -31,7 +31,7 @@ sudo cp -r /home/xubuntu/puppet/modules /etc/puppet/modules
 sudo cp -r /home/xubuntu/puppet/manifests /etc/puppet/manifests
 ```
 
-Alla valmis [skripti]() (tai avaa linkistä tiedosto). 
+Alla valmis [skripti](https://github.com/mcleppala/puppet/blob/master/asennus.sh) (tai avaa linkistä tiedosto). 
 
 ```bash
 echo "***************************"
