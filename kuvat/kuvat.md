@@ -1,0 +1,1 @@
+* tähän kansioon lisätään kuvat
