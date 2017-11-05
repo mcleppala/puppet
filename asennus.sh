@@ -12,10 +12,10 @@ echo "*******************************************"
 echo "Kloonataan repository ja kopioidaan tiedostot"
 echo "*******************************************"
 git clone https://github.com/mcleppala/puppet
-sudo cp -r /home/xubuntu/puppet/modules/apache2 /etc/puppet/modules/
-sudo cp -r /home/xubuntu/puppet/modules/sshd /etc/puppet/modules/
-sudo cp -r /home/xubuntu/puppet/modules/mysql /etc/puppet/modules/
-sudo cp -r /home/xubuntu/puppet/manifests/site.pp /etc/puppet/manifests/
+sudo cp -r /home/$USER/puppet/modules/apache2 /etc/puppet/modules/
+sudo cp -r /home/$USER/puppet/modules/sshd /etc/puppet/modules/
+sudo cp -r /home/$USER/puppet/modules/mysql /etc/puppet/modules/
+sudo cp -r /home/$USER/puppet/manifests/site.pp /etc/puppet/
 echo "*******************************************"
 echo "Asennus valmis."
 echo "*******************************************"
