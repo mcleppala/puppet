@@ -6,6 +6,6 @@ Perustettu Palvelintenhallinta-kurssia varten. http://terokarvinen.com/2017/aika
 
 Kopioi tiedosto ja aja se komennoilla
 ```
-wget https://github.com/mcleppala/puppet/blob/master/asennus.sh
+wget https://raw.githubusercontent.com/mcleppala/puppet/master/asennus.sh
 bash asennus.sh
 ```
