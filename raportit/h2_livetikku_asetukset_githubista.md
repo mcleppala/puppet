@@ -79,4 +79,84 @@ Aikani eräässä [Stackoverflown](https://stackoverflow.com/questions/36056066/
 
 Tähän tehtävään jouduin hetken miettimään mitä tekisin, sillä minulla ei ollut kahta konetta. Hain Googlesta ohjeita, miten tehdä homma kahdella virtuaalikoneella ja löysin seuraavan [ohjeen](http://discoposse.com/2013/06/25/puppet-101-basic-installation-for-master-and-agent-machines-on-ubuntu-12-04-with-vmware-workstation/). Päätin kokeilla tehtävää ohjeen mukaisesti. Tein tehtävän Windows 10-koneellani, jossa minulla on VMWare Player asennettuna.
 
-Hain Ubuntu Server 16.04.3 LTS [ISO](https://www.ubuntu.com/download/server)-imagen ja aloin asentamaan sitä ohjeen mukaan.
+Hain Ubuntu Server 16.04.3 LTS [ISO](https://www.ubuntu.com/download/server)-imagen ja aloin asentamaan sitä ohjeen mukaan. Otin rinnalle käyttööni myös Teron [ohjeen](http://terokarvinen.com/2012/puppetmaster-on-ubuntu-12-04). * Lisää kuvat tähän *
+
+Kun asennus oli valmis, muutin puppetmaster-koneen host nimen komennolla
+```
+hostnamectl set-hostname master
+```
+
+Tämän jälkeen avasin network/interfaces tiedoston komennolla
+```
+sudoedit /etc/network/interfaces
+```
+ja lisäsin siihen ohjeen mukaiset 10.-osoitteet, kuva alla.
+* lisää kuva *
+
+Tämän jälkeen muokkasin hosts-tiedostoa komennolla
+```
+sudoedit /etc/hosts/
+```
+Ja lisäsin siihen ohjeen mukaisesti masterin ja slaven tiedot, kuva alla.
+* lisää kuva *
+
+Sitten yritin asentaa puppetmasterin, mutta paketinhallinnassa saan virheen, eikä mikään asennus onnistu ja uudelleen käynnistyksen jälkeen, en enää pääse kirjautumaan master-koneelle. Jotain meni pahasti rikki.
+
+Tässä kohtaa alkaa iskemään epätoivo, olen tehnyt nyt töitä 2 tuntia ja mikään ei enää toimi. Päätän asentaa master-koneen uudestaan ja aloittaa alusta Teron ohjeiden mukaan. Google löysi myös toisen kurssikaverin [sivut](http://renki.dy.fi/linux2/tehtava2.php), joista myös sain apua.
+
+Master-koneella ajan komennon 
+```
+hostnamectl set-hostname master
+sudo service avahi-daemon restart
+```
+Koneellani ei ollut ilmeisesti asennettuna avahi-daemonia, sillä saan virheen ettei ko. serviceä tunneta. Asennan avahi-daemonin komennolla
+```
+sudo apt-get install -y avahi-daemon
+```
+
+Asennan sen samalla myös slave-koneelle. Lopulta pääsen tilanteeseen, jossa voin muokata hosts tiedostoja, aloitan master-koneesta komennolla
+```
+sudoedit /etc/hosts
+```
+Ja teen kuvan mukaiset muutokset
+* lisää kuva *
+
+Ja sitten muutan vielä slave-koneelle tiedot samalla tavalla, kuva alla.
+* lisää kuva *
+
+Sitten testaan pingillä vastaavatko koneet komennoilla
+```
+minna@slave:~$ ping -c 1 master.local 
+minna@master:~$ ping -c 1 slave.local
+```
+Ja master vastaa kuvan mukaisesti
+* lisää kuva *
+
+Ja niin myös slave
+* lisää kuva *
+
+Sitten pääsin vihdoinkin asentamaan Puppetmasterin master-koneelle komennolla
+```
+sudo apt-get install -y puppetmaster
+```
+Pysäytin Puppetmasterin ja poistin kansion ssl komennoilla
+```
+sudo service puppetmaster stop
+sudo rm -r /var/lib/puppet/ssl
+```
+Seuraavaksi editoin master-koneen puppet.conf-tiedostoa komennolla
+```
+sudoedit /etc/puppet/puppet.conf
+```
+Ja lisäsin tiedostoon seuraavan rivin master-otsikon alle
+```
+dns_alt_names = puppet, master.local
+```
+Ja lopuksi vielä käynnistin Puppetmasterin komennolla 
+```
+sudo service puppetmaster start
+```
+Sitten asennetaan slave-koneelle puppet komennolla
+```
+sudo apt-get install -y puppet
+```
