@@ -77,9 +77,24 @@ Aikani eräässä [Stackoverflown](https://stackoverflow.com/questions/36056066/
 
 ### b) Kokeile Puppetin master-slave arkkitehtuuria kahdella koneella. Liitä raporttiisi listaus avaimista (sudo puppet cert list) ja pätkä herran http-lokista (sudo tail -5 /var/log/puppet/masterhttp.log).
 
+(lopullinen käytetty aika raportointi mukaanlukien 8 tuntia)
+
 Tähän tehtävään jouduin hetken miettimään mitä tekisin, sillä minulla ei ollut kahta konetta. Hain Googlesta ohjeita, miten tehdä homma kahdella virtuaalikoneella ja löysin seuraavan [ohjeen](http://discoposse.com/2013/06/25/puppet-101-basic-installation-for-master-and-agent-machines-on-ubuntu-12-04-with-vmware-workstation/). Päätin kokeilla tehtävää ohjeen mukaisesti. Tein tehtävän Windows 10-koneellani, jossa minulla on VMWare Player asennettuna.
 
-Hain Ubuntu Server 16.04.3 LTS [ISO](https://www.ubuntu.com/download/server)-imagen ja aloin asentamaan sitä ohjeen mukaan. Otin rinnalle käyttööni myös Teron [ohjeen](http://terokarvinen.com/2012/puppetmaster-on-ubuntu-12-04). * Lisää kuvat tähän *
+Hain Ubuntu Server 16.04.3 LTS [ISO](https://www.ubuntu.com/download/server)-imagen ja aloin asentamaan sitä ohjeen mukaan. Otin rinnalle käyttööni myös Teron [ohjeen](http://terokarvinen.com/2012/puppetmaster-on-ubuntu-12-04). 
+
+Master-koneen asetukset
+![master](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/master_settings_ready.png)
+
+Asentaa Ubuntua
+![installing](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/puppetmaster_installing.png)
+
+Ja asennus valmis
+![master_valmis](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/puppet_master_ready_use.png)
+
+Ja samat slave-koneelle, alla pari kuvaa
+![asetukset_slave](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/puppetslave_ready_for_installing.png)
+![slave_valmis](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/puppetslave_ready_use.png)
 
 Kun asennus oli valmis, muutin puppetmaster-koneen host nimen komennolla
 ```
@@ -98,7 +113,7 @@ Tämän jälkeen muokkasin hosts-tiedostoa komennolla
 sudoedit /etc/hosts/
 ```
 Ja lisäsin siihen ohjeen mukaisesti masterin ja slaven tiedot, kuva alla.
-* lisää kuva *
+![hosts](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/master_hosts.png)
 
 Sitten yritin asentaa puppetmasterin, mutta paketinhallinnassa saan virheen, eikä mikään asennus onnistu ja uudelleen käynnistyksen jälkeen, en enää pääse kirjautumaan master-koneelle. Jotain meni pahasti rikki.
 
@@ -119,10 +134,10 @@ Asennan sen samalla myös slave-koneelle. Lopulta pääsen tilanteeseen, jossa v
 sudoedit /etc/hosts
 ```
 Ja teen kuvan mukaiset muutokset
-* lisää kuva *
+![new_hosts](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/master_hosts_new.png)
 
 Ja sitten muutan vielä slave-koneelle tiedot samalla tavalla, kuva alla.
-* lisää kuva *
+![slave_hosts](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/hosts_slave.png)
 
 Sitten testaan pingillä vastaavatko koneet komennoilla
 ```
@@ -130,10 +145,10 @@ minna@slave:~$ ping -c 1 master.local
 minna@master:~$ ping -c 1 slave.local
 ```
 Ja master vastaa kuvan mukaisesti
-* lisää kuva *
+![fromSlave](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/ping_from_slave_to_master.png)
 
 Ja niin myös slave
-* lisää kuva *
+![fromMaster](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/ping_from_master_to_slave.png)
 
 Sitten pääsin vihdoinkin asentamaan Puppetmasterin master-koneelle komennolla
 ```
@@ -185,9 +200,6 @@ Siirryin master-koneelle, jossa tehdään sertifikaatti slave-koneelle komennoll
 ```
 sudo puppet cert --list
 ```
-Ja kuvassa tulos
-* lisää kuva
-
 Ja sitten vielä allekirjoitus komennolla
 ```
 sudo puppet --sign slave.localdomain
@@ -239,11 +251,11 @@ Ja niin näkyi masterilta tullut viesti joka ei olisi ollut voinut olla oikeampi
 Masterilta väsynyttä viestiä ja läppää
 ```
 Sitten piti vielä listata sertifikaatit ja masterhttp.log-tiedoston viisi viimeistä riviä. Lokin rivit sain talteen ja löytyvät alla olevasta kuvasta
-* lisää kuva
+![loki](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/masterhttp_log.png)
 
 Ja sertifikaatit komennolla
 ```
 sudo puppet cert list --all
 ```
 Kuvassa tulokset
-* kuva
+![sertifikaatit](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/list_sertificates.png)
