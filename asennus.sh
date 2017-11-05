@@ -18,7 +18,7 @@ sudo cp -r /home/$USER/puppet/modules/mysql /etc/puppet/modules/
 cd /etc/puppet/
 sudo mkdir manifests
 cd
-sudo cp -r /home/$USER/puppet/manifests/site.pp /etc/puppet/manitests/
+sudo cp -r /home/$USER/puppet/manifests/site.pp /etc/puppet/manifests/
 echo "*******************************************"
 echo "Asennus valmis."
 echo "*******************************************"
