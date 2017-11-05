@@ -160,3 +160,90 @@ Sitten asennetaan slave-koneelle puppet komennolla
 ```
 sudo apt-get install -y puppet
 ```
+Muokataan slave-koneen puppet.conf tiedostoa komennolla
+```
+sudoedit /etc/puppet/puppet.conf
+```
+Lisäsin tiedostoon ohjeen mukaisesti rivit
+```
+[agent]
+server = master.local
+```
+Sitten muokkasin puppet-tiedostoa komennolla
+```
+sudoedit /etc/default/puppet
+```
+Ja lisäsin tyhjään tiedostoon seuraavan rivin
+```
+START=yes
+```
+Tämän jälkeen käynnistin Puppetin uudestaan komennolla
+```
+sudo service puppet restart
+```
+Siirryin master-koneelle, jossa tehdään sertifikaatti slave-koneelle komennolla
+```
+sudo puppet cert --list
+```
+Ja kuvassa tulos
+* lisää kuva
+
+Ja sitten vielä allekirjoitus komennolla
+```
+sudo puppet --sign slave.localdomain
+```
+Ja lopuksi vielä tein pikaisen moduulin master-koneelle testiä varten komennoilla
+```
+cd /etc/puppet
+sudo mkdir -p manifests/ modules/helloworld/manifests/
+```
+Tuonne /puppet/manifests-kansioon lisään tiedoston site.pp ja siihen yhden rivin komennoilla
+```
+sudoedit manifests/site.pp
+include helloworld
+```
+Sitten teen moduulin helloworld ja sen manifests-kansioon lisään init.pp tiedoston komennolla
+```
+sudoedit modules/helloworld/manifests/init.pp
+```
+Johon lisään seuraavat rivit
+```
+class helloworld {
+        file { '/tmp/helloFromMaster':
+                content => "Masterilta väsynyttä viestiä ja läppää\n"
+        }
+}
+```
+Ja sitten käynnistämään uudelleen puppet slave-koneella, jotta slave hakee tekemäni moduulin, komennolla
+```
+sudo service puppet restart 
+```
+Ja tämän jälkeen /tmp/-kansiosta katsomaan onko tullut masterilta ohjeita komennolla
+```
+cat /tmp/helloFromMaster
+```
+Mutta mitään ei näy... Olen 6 tunnin työskentelyn jälkeen melko epätoivoinen tässä kohtaa, mutta vilkaisen [Matiaksen](http://renki.dy.fi/linux2/tehtava2.php) tekemää tehtävää ja hänelläkin oli ollut sama ongelma ja ratkaisukin löytyi! Kirjoitin komennon
+```
+sudo puppet agent --enable
+```
+Ja käynnistin vielä puppetin uudestaan komennolla
+```
+sudo service puppet restart
+```
+Sitten uudestaan komento 
+```
+cat /tmp/helloFromMaster
+```
+Ja niin näkyi masterilta tullut viesti joka ei olisi ollut voinut olla oikeampi tähän aikaan illasta
+```
+Masterilta väsynyttä viestiä ja läppää
+```
+Sitten piti vielä listata sertifikaatit ja masterhttp.log-tiedoston viisi viimeistä riviä. Lokin rivit sain talteen ja löytyvät alla olevasta kuvasta
+* lisää kuva
+
+Ja sertifikaatit komennolla
+```
+sudo puppet cert list --all
+```
+Kuvassa tulokset
+* kuva
