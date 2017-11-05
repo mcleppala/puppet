@@ -84,16 +84,21 @@ Tähän tehtävään jouduin hetken miettimään mitä tekisin, sillä minulla e
 Hain Ubuntu Server 16.04.3 LTS [ISO](https://www.ubuntu.com/download/server)-imagen ja aloin asentamaan sitä ohjeen mukaan. Otin rinnalle käyttööni myös Teron [ohjeen](http://terokarvinen.com/2012/puppetmaster-on-ubuntu-12-04). 
 
 Master-koneen asetukset
+
 ![master](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/master_settings_ready.png)
 
 Asentaa Ubuntua
+
 ![installing](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/puppetmaster_installing.png)
 
 Ja asennus valmis
+
 ![master_valmis](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/puppet_master_ready_use.png)
 
 Ja samat slave-koneelle, alla pari kuvaa
+
 ![asetukset_slave](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/puppetslave_ready_for_installing.png)
+
 ![slave_valmis](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/puppetslave_ready_use.png)
 
 Kun asennus oli valmis, muutin puppetmaster-koneen host nimen komennolla
