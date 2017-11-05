@@ -91,7 +91,7 @@ Tämän jälkeen avasin network/interfaces tiedoston komennolla
 sudoedit /etc/network/interfaces
 ```
 ja lisäsin siihen ohjeen mukaiset 10.-osoitteet, kuva alla.
-* lisää kuva *
+![Interfaces]( puppet/kuvat/master_interfaces.png)
 
 Tämän jälkeen muokkasin hosts-tiedostoa komennolla
 ```
