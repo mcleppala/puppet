@@ -79,4 +79,4 @@ Aikani eräässä [Stackoverflown](https://stackoverflow.com/questions/36056066/
 
 Tähän tehtävään jouduin hetken miettimään mitä tekisin, sillä minulla ei ollut kahta konetta. Hain Googlesta ohjeita, miten tehdä homma kahdella virtuaalikoneella ja löysin seuraavan [ohjeen](http://discoposse.com/2013/06/25/puppet-101-basic-installation-for-master-and-agent-machines-on-ubuntu-12-04-with-vmware-workstation/). Päätin kokeilla tehtävää ohjeen mukaisesti. Tein tehtävän Windows 10-koneellani, jossa minulla on VMWare Player asennettuna.
 
-
+Hain Ubuntu Server 16.04.3 LTS [ISO](https://www.ubuntu.com/download/server)-imagen ja aloin asentamaan sitä ohjeen mukaan.
