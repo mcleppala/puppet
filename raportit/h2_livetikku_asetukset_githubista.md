@@ -124,7 +124,7 @@ Sitten yritin asentaa puppetmasterin, mutta paketinhallinnassa saan virheen, eik
 
 Tässä kohtaa alkaa iskemään epätoivo, olen tehnyt nyt töitä 2 tuntia ja mikään ei enää toimi. Päätän asentaa master-koneen uudestaan ja aloittaa alusta Teron ohjeiden mukaan. Google löysi myös toisen kurssikaverin [sivut](http://renki.dy.fi/linux2/tehtava2.php), joista myös sain apua.
 
-Master-koneella ajan komennon 
+Master-koneella ajan komennot 
 ```
 hostnamectl set-hostname master
 sudo service avahi-daemon restart
