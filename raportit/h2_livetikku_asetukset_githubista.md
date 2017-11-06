@@ -255,6 +255,10 @@ Ja niin näkyi masterilta tullut viesti joka ei olisi ollut voinut olla oikeampi
 ```
 Masterilta väsynyttä viestiä ja läppää
 ```
+Ja sama kuvan kanssa
+
+![hello](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/helloFromMaster.png)
+
 Sitten piti vielä listata sertifikaatit ja masterhttp.log-tiedoston viisi viimeistä riviä. Lokin rivit sain talteen ja löytyvät alla olevasta kuvasta
 ![loki](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/masterhttp_log.png)
 
