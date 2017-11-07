@@ -1,0 +1,12 @@
+# http://TeroKarvinen.com/
+Vagrant.configure(2) do |config|
+ config.vm.box = "bento/ubuntu-16.04"
+
+ config.vm.define "slave01" do |slave01|
+   slave01.vm.hostname = "slave01"
+ end
+
+ config.vm.define "slave02" do |slave02|
+   slave02.vm.hostname = "slave02"
+ end
+end
