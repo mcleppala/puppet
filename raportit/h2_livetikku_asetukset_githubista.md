@@ -209,7 +209,7 @@ sudo puppet cert --list
 ```
 Ja sitten vielä allekirjoitus komennolla
 ```
-sudo puppet --sign slave.localdomain
+sudo puppet cert --sign slave.localdomain
 ```
 Ja lopuksi vielä tein pikaisen moduulin master-koneelle testiä varten komennoilla
 ```
