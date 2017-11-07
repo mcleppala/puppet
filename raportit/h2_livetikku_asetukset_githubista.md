@@ -73,7 +73,8 @@ Processing triggers for ureadahead (0.100.0-19) ...
 
 ```
 Aikani eräässä [Stackoverflown](https://stackoverflow.com/questions/36056066/cant-request-for-certificate-form-agent-using-puppet-agent-test) artikkelissa mainittiin puppet.conf ja siin vaiheessa mietin, että mitähän olin oikein tuhonnut kun poistin puppet-kansion /etc/-kansiorakenteesta ja tajusin, ettei purge ja uudelleen asennus enää lisänneet tiedostoja puppet.conf, etckeeper-commit-post ja etckeeper-commit-pre -tiedostoja, joten kopioin ne /etc/puppet/ -kansioon vanhasta repostani ja tämän jälkeen asennus meni läpi ongelmitta. En tiedä mikä vika oli ja olenko nyt korjannut riittävästi Xubuntun kansiota.
-UPDATE 7.11.2017:poistin manifests-kansion lisäyksen, joka oli tupla
+
+UPDATE 7.11.2017:poistin manifests-kansion lisäyksen, joka oli tupla.
 
 
 ### b) Kokeile Puppetin master-slave arkkitehtuuria kahdella koneella. Liitä raporttiisi listaus avaimista (sudo puppet cert list) ja pätkä herran http-lokista (sudo tail -5 /var/log/puppet/masterhttp.log).
@@ -269,3 +270,13 @@ sudo puppet cert list --all
 ```
 Kuvassa tulokset
 ![sertifikaatit](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/list_sertificates.png)
+
+##Lähteet
+* Tehtävänanto: http://terokarvinen.com/2017/aikataulu-palvelinten-hallinta-ict4tn022-3-5-op-uusi-ops-loppusyksy-2017-p5#comment-23251
+* Stackoverflow: https://stackoverflow.com/questions/36056066/cant-request-for-certificate-form-agent-using-puppet-agent-test
+* Oma vanha repo: https://github.com/mcleppala/puppetconf
+* Eemeli Aaltonen: https://github.com/poponappi/essential-tools/blob/master/essentialtools.sh
+* Discoposse: http://discoposse.com/2013/06/25/puppet-101-basic-installation-for-master-and-agent-machines-on-ubuntu-12-04-with-vmware-workstation/
+* Ubuntu levykuva: https://www.ubuntu.com/download/server
+* Tero Karvisen ohje: http://terokarvinen.com/2012/puppetmaster-on-ubuntu-12-04
+* Matias Räisänen: http://renki.dy.fi/linux2/tehtava2.php
