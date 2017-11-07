@@ -19,3 +19,4 @@ sudo cp -r /home/$USER/puppet/manifests/site.pp /etc/puppet/manifests/
 echo "*******************************************"
 echo "Asennus valmis."
 echo "*******************************************"
+
