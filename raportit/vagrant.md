@@ -1,4 +1,5 @@
 # Slave/vagrant
+```
 vagrant@vagrant:~$ history
     1  hostnamectl set-hostname slave
     2  sudoedit /etc/hosts
@@ -21,6 +22,7 @@ vagrant@vagrant:~$ history
    30  sudo puppet agent --enable
    31  sudo puppet agent -t
    32  history
+```
 
 # /etc/hosts
 
@@ -36,6 +38,7 @@ ff02::2 ip6-allrouters
 ```
 
 # Master
+```
 xubuntu@master:~$ history
     1  cd /etc/
     2  cd puppet
@@ -115,8 +118,10 @@ xubuntu@master:~$ history
    76  sudo puppet cert --list
    77  sudo puppet cert --list --all
    78  history
-   
+```
+
 # /etc/hosts
+
 ```
 127.0.0.1 localhost
 127.0.1.1 xubuntu master
