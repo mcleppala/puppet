@@ -15,9 +15,6 @@ git clone https://github.com/mcleppala/puppet
 sudo cp -r /home/$USER/puppet/modules/apache2 /etc/puppet/modules/
 sudo cp -r /home/$USER/puppet/modules/sshd /etc/puppet/modules/
 sudo cp -r /home/$USER/puppet/modules/mysql /etc/puppet/modules/
-cd /etc/puppet/
-sudo mkdir manifests
-cd
 sudo cp -r /home/$USER/puppet/manifests/site.pp /etc/puppet/manifests/
 echo "*******************************************"
 echo "Asennus valmis."
