@@ -52,7 +52,7 @@ invoke-rc.d: initscript puppet, action "start" failed.
    Loaded: loaded (/lib/systemd/system/puppet.service; enabled; vendor preset: enabled)
    Active: failed (Result: timeout) since su 2017-11-05 15:39:06 EET; 4ms ago
   Process: 26809 ExecStart=/usr/bin/puppet agent $DAEMON_OPTS (code=exited, status=0/SUCCESS)
- Main PID: 1047 (code=exited, status=1/FAILURE)
+https://github.com/mcleppala/puppet Main PID: 1047 (code=exited, status=1/FAILURE)
 
 marras 05 15:37:36 kuusi systemd[1]: Starting Puppet agent...
 marras 05 15:37:37 kuusi puppet-agent[26821]: Reopening log files
@@ -271,7 +271,7 @@ sudo puppet cert list --all
 Kuvassa tulokset
 ![sertifikaatit](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/list_sertificates.png)
 
-##Lähteet
+## Lähteet
 * Tehtävänanto: http://terokarvinen.com/2017/aikataulu-palvelinten-hallinta-ict4tn022-3-5-op-uusi-ops-loppusyksy-2017-p5#comment-23251
 * Stackoverflow: https://stackoverflow.com/questions/36056066/cant-request-for-certificate-form-agent-using-puppet-agent-test
 * Oma vanha repo: https://github.com/mcleppala/puppetconf
