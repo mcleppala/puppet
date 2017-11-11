@@ -56,3 +56,37 @@ H/W path                Device      Class       Description
 /0/2/0.0.0              /dev/cdrom  disk        DVD-RAM UJ880AS
 xubuntu@xubuntu:~$ 
 ```
+Masterina käytin samaa vanhaa [konettani](https://minnaleppala.files.wordpress.com/2017/08/lista.png?w=1000).
+
+Aloitin tehtävän tekemisen toistamalla edeltävän viikon [tehtävän](https://github.com/mcleppala/puppet/blob/master/raportit/h2_livetikku_asetukset_githubista.md) vaiheet. 
+
+Masterille asensin Puppetmasterin komennolla
+```
+sudo apt-get install -y puppetmaster
+```
+Muutan koneen hostnamen komennolla
+```
+hostnamectl set-hostname master
+```
+Ja editoin hosts-tiedostoa komennolla
+```
+sudoedit /etc/hosts
+```
+Lisään tässä kohtaa slave-koneen hosts-tiedostoon tiedon masterista sekä slavesta edeltävällä komennolla. Alla hosts-tiedoston sisältö
+```
+127.0.0.1 localhost
+127.0.1.1 xubuntu slave
+192.168.1.112 master
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+ff02::3 ip6-allhosts
+```
+Muutan myös slaven hostnamen komennolla
+```
+hostnamectl set-hostname slave
+```
