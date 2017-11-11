@@ -60,6 +60,7 @@ Masterina käytin samaa vanhaa [konettani](https://minnaleppala.files.wordpress.
 
 Aloitin tehtävän tekemisen toistamalla edeltävän viikon [tehtävän](https://github.com/mcleppala/puppet/blob/master/raportit/h2_livetikku_asetukset_githubista.md) vaiheet. 
 
+### Masterin asetukset
 Masterille asensin Puppetmasterin komennolla
 ```
 sudo apt-get install -y puppetmaster
@@ -72,7 +73,25 @@ Ja editoin hosts-tiedostoa komennolla
 ```
 sudoedit /etc/hosts
 ```
-Lisään tässä kohtaa slave-koneen hosts-tiedostoon tiedon masterista sekä slavesta edeltävällä komennolla. Alla hosts-tiedoston sisältö
+Sitten pysäytän puppetmasterin ja poistan ssl-kansion komennoilla
+```
+sudo service puppetmaster stop
+sudo rm -r /var/lib/puppet/ssl
+```
+Seuraavaksi editoin master-koneen puppet.conf-tiedostoa komennolla
+```
+sudoedit /etc/puppet/puppet.conf
+```
+Ja lisäsin tiedostoon seuraavan rivin [master]-otsikon alle
+```
+dns_alt_names = puppet, master
+```
+Ja käynnistetään puppetmaster uudestaan komennolla
+```
+sudo service puppetmaster start
+```
+### Rauta-slaven asetukset
+Lisään slave-koneen hosts-tiedostoon tiedon masterista sekä slavesta edeltävällä komennolla. Alla hosts-tiedoston sisältö
 ```
 127.0.0.1 localhost
 127.0.1.1 xubuntu slave
@@ -89,4 +108,42 @@ ff02::3 ip6-allhosts
 Muutan myös slaven hostnamen komennolla
 ```
 hostnamectl set-hostname slave
+```
+Sitten slave-koneella testi, että yhteys toimii ja kyllä toimii, alla komento ja tulos
+```
+xubuntu@xubuntu:~$ ping -c 1 master
+PING master (192.168.1.112) 56(84) bytes of data.
+64 bytes from master (192.168.1.112): icmp_seq=1 ttl=64 time=20.1 ms
+
+--- master ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 20.198/20.198/20.198/0.000 ms
+xubuntu@xubuntu:~$
+```
+Päivitän paketinhallinnan komennolla
+```
+sudo apt-get update
+```
+Mutta saankin paketinhallinnasta virheen "AppStream cache update failed." Joten joudun etsimään ratkaisua googlen avulla. AskUbuntun-foorumilta löytyykin [ohje](https://askubuntu.com/questions/854168/how-i-can-fix-appstream-cache-update-completed-but-some-metadata-was-ignored-d), mutta virhe ei korjaudu. Päätän jatkaa tehtävän tekoa virheestä huolimatta ja asennan 
+Puppetin ja Treen komennolla
+```
+sudo apt-get install -y puppet tree
+```
+Asennus menee läpi ongelmitta. Tämän jälkeen päivitän puppet.conf-tiedoston komennolla
+```
+sudoedit /etc/puppet/puppet.conf
+```
+Lisäsin tiedostoon ohjeen mukaisesti rivit
+```
+[agent]
+server = master
+```
+Ja käynnistetään Puppet uudestaan komennolla
+```
+sudo service puppet restart
+```
+Täsä kohtaa tulee mieleeni, että tunnilla minulla oli ongelmia serttien kanssa, joten kaiken varalta poistan vielä slavelta sertit komennoilla
+```
+sudo service puppet stop
+sudo rm -r /var/lib/puppet/ssl
 ```
