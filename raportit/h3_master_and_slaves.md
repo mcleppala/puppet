@@ -288,3 +288,63 @@ Error: Could not request certificate: execution expired
 Exiting; failed to retrieve certificate and waitforcert is disabled
 xubuntu@xubuntu:~$ 
 ```
+Yritn tunnin ajan saada hommaa toimimaan, mutta jostain syystä en saa vaan sertifikaatteja haettua orjalle. Alan epäillä, että masterini ei nyt toimi asiallisesti. Yritin myös asentaa vielä vagrantin ja virtualboxin komennolla 
+```
+sudo apt-get install -y virtualbox vagrant
+```
+Mutta tässäkin tulee virhettä, joten nyt alan olla epätoivoinen
+```
+minna@master:~$ sudo apt-get install virtualbox
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  virtualbox-qt
+Suggested packages:
+  vde2 virtualbox-guest-additions-iso
+The following NEW packages will be installed:
+  virtualbox virtualbox-qt
+0 upgraded, 2 newly installed, 0 to remove and 0 not upgraded.
+Need to get 0 B/21,5 MB of archives.
+After this operation, 90,2 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Selecting previously unselected package virtualbox.
+(Reading database ... 263159 files and directories currently installed.)
+Preparing to unpack .../virtualbox_5.0.40-dfsg-0ubuntu1.16.04.1_amd64.deb ...
+Unpacking virtualbox (5.0.40-dfsg-0ubuntu1.16.04.1) ...
+Selecting previously unselected package virtualbox-qt.
+Preparing to unpack .../virtualbox-qt_5.0.40-dfsg-0ubuntu1.16.04.1_amd64.deb ...
+Unpacking virtualbox-qt (5.0.40-dfsg-0ubuntu1.16.04.1) ...
+Processing triggers for man-db (2.7.5-1) ...
+Processing triggers for systemd (229-4ubuntu21) ...
+Processing triggers for ureadahead (0.100.0-19) ...
+Processing triggers for hicolor-icon-theme (0.15-0ubuntu1) ...
+Processing triggers for shared-mime-info (1.5-2ubuntu0.1) ...
+Processing triggers for gnome-menus (3.13.3-6ubuntu3.1) ...
+Processing triggers for desktop-file-utils (0.22-1ubuntu5.1) ...
+Processing triggers for mime-support (3.59ubuntu1) ...
+Setting up virtualbox (5.0.40-dfsg-0ubuntu1.16.04.1) ...
+vboxweb.service is a disabled or a static unit, not starting it.
+Job for virtualbox.service failed because the control process exited with error code. See "systemctl status virtualbox.service" and "journalctl -xe" for details.
+invoke-rc.d: initscript virtualbox, action "restart" failed.
+● virtualbox.service - LSB: VirtualBox Linux kernel module
+   Loaded: loaded (/etc/init.d/virtualbox; bad; vendor preset: enabled)
+   Active: failed (Result: exit-code) since la 2017-11-11 15:19:32 EET; 4ms ago
+     Docs: man:systemd-sysv-generator(8)
+  Process: 19492 ExecStart=/etc/init.d/virtualbox start (code=exited, status=1/FAILURE)
+
+marras 11 15:19:32 master systemd[1]: Starting LSB: VirtualBox Linux kernel.....
+marras 11 15:19:32 master virtualbox[19492]:  * Loading VirtualBox kernel mo....
+marras 11 15:19:32 master virtualbox[19492]:  * modprobe vboxdrv failed. Ple...y
+marras 11 15:19:32 master virtualbox[19492]:    ...fail!
+marras 11 15:19:32 master systemd[1]: virtualbox.service: Control process e...=1
+marras 11 15:19:32 master systemd[1]: Failed to start LSB: VirtualBox Linux...e.
+marras 11 15:19:32 master systemd[1]: virtualbox.service: Unit entered fail...e.
+marras 11 15:19:32 master systemd[1]: virtualbox.service: Failed with resul...'.
+Hint: Some lines were ellipsized, use -l to show in full.
+Setting up virtualbox-qt (5.0.40-dfsg-0ubuntu1.16.04.1) ...
+Processing triggers for systemd (229-4ubuntu21) ...
+Processing triggers for ureadahead (0.100.0-19) ...
+minna@master:~$ 
+
+```
