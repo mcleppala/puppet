@@ -147,3 +147,144 @@ Täsä kohtaa tulee mieleeni, että tunnilla minulla oli ongelmia serttien kanss
 sudo service puppet stop
 sudo rm -r /var/lib/puppet/ssl
 ```
+Pysäytys ei kuitenkaan onnistu, sillä puppet restart oli käynnistänyt myös agentin, jonka pysäytin komennolla
+```
+sudo puppet agent --disable
+```
+Ja sitten pysäytys onnistuu komennolla
+```
+sudo service puppet stop
+```
+Ja sitten poistin kansion komennolla
+```
+sudo rm -r /var/lib/puppet/ssl
+```
+Ja käynnistin puppetin komennolla
+```
+sudo service puppet start
+```
+Sitten käynnistin agentin komennolla
+```
+sudo puppet agent --enable
+```
+Ja teen agentilla testin
+```
+sudo puppet agent -t
+```
+Mutta mitään ei tapahdu ja saan seuraavan virheilmoituksen
+```
+Error: Could not request certificate: execution expired
+Exiting; failed to retrieve certificate and waitforcert is disabled
+```
+Sitten ajan vielä agentilla testin ja debugin, alla tulos
+```
+xubuntu@xubuntu:~$ sudo puppet agent -tdv
+Debug: Evicting cache entry for environment 'production'
+Debug: Caching environment 'production' (ttl = 0 sec)
+Debug: Evicting cache entry for environment 'production'
+Debug: Caching environment 'production' (ttl = 0 sec)
+Debug: Evicting cache entry for environment 'production'
+Debug: Caching environment 'production' (ttl = 0 sec)
+Debug: Evicting cache entry for environment 'production'
+Debug: Caching environment 'production' (ttl = 0 sec)
+Debug: Using settings: adding file resource 'confdir': 'File[/etc/puppet]{:path=>"/etc/puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Evicting cache entry for environment 'production'
+Debug: Caching environment 'production' (ttl = 0 sec)
+Debug: Evicting cache entry for environment 'production'
+Debug: Caching environment 'production' (ttl = 0 sec)
+Debug: Puppet::Type::User::ProviderUser_role_add: file roleadd does not exist
+Debug: Failed to load library 'ldap' for feature 'ldap'
+Debug: Puppet::Type::User::ProviderLdap: feature ldap is missing
+Debug: Puppet::Type::User::ProviderPw: file pw does not exist
+Debug: Puppet::Type::User::ProviderDirectoryservice: file /usr/bin/dsimport does not exist
+Debug: /User[puppet]: Provider useradd does not support features libuser; not managing attribute forcelocal
+Debug: Failed to load library 'ldap' for feature 'ldap'
+Debug: Puppet::Type::Group::ProviderLdap: feature ldap is missing
+Debug: Puppet::Type::Group::ProviderPw: file pw does not exist
+Debug: Puppet::Type::Group::ProviderDirectoryservice: file /usr/bin/dscl does not exist
+Debug: /Group[puppet]: Provider groupadd does not support features libuser; not managing attribute forcelocal
+Debug: Using settings: adding file resource 'vardir': 'File[/var/lib/puppet]{:path=>"/var/lib/puppet", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'logdir': 'File[/var/log/puppet]{:path=>"/var/log/puppet", :mode=>"750", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'statedir': 'File[/var/lib/puppet/state]{:path=>"/var/lib/puppet/state", :mode=>"1755", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'rundir': 'File[/run/puppet]{:path=>"/run/puppet", :mode=>"755", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'libdir': 'File[/var/lib/puppet/lib]{:path=>"/var/lib/puppet/lib", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'preview_outputdir': 'File[/var/lib/puppet/preview]{:path=>"/var/lib/puppet/preview", :mode=>"750", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'certdir': 'File[/var/lib/puppet/ssl/certs]{:path=>"/var/lib/puppet/ssl/certs", :mode=>"755", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'ssldir': 'File[/var/lib/puppet/ssl]{:path=>"/var/lib/puppet/ssl", :mode=>"771", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'publickeydir': 'File[/var/lib/puppet/ssl/public_keys]{:path=>"/var/lib/puppet/ssl/public_keys", :mode=>"755", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'requestdir': 'File[/var/lib/puppet/ssl/certificate_requests]{:path=>"/var/lib/puppet/ssl/certificate_requests", :mode=>"755", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'privatekeydir': 'File[/var/lib/puppet/ssl/private_keys]{:path=>"/var/lib/puppet/ssl/private_keys", :mode=>"750", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'privatedir': 'File[/var/lib/puppet/ssl/private]{:path=>"/var/lib/puppet/ssl/private", :mode=>"750", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'hostprivkey': 'File[/var/lib/puppet/ssl/private_keys/slave.bb.dnainternet.fi.pem]{:path=>"/var/lib/puppet/ssl/private_keys/slave.bb.dnainternet.fi.pem", :mode=>"640", :owner=>"puppet", :group=>"puppet", :ensure=>:file, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'hostpubkey': 'File[/var/lib/puppet/ssl/public_keys/slave.bb.dnainternet.fi.pem]{:path=>"/var/lib/puppet/ssl/public_keys/slave.bb.dnainternet.fi.pem", :mode=>"644", :owner=>"puppet", :group=>"puppet", :ensure=>:file, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'clientyamldir': 'File[/var/lib/puppet/client_yaml]{:path=>"/var/lib/puppet/client_yaml", :mode=>"750", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'client_datadir': 'File[/var/lib/puppet/client_data]{:path=>"/var/lib/puppet/client_data", :mode=>"750", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'clientbucketdir': 'File[/var/lib/puppet/clientbucket]{:path=>"/var/lib/puppet/clientbucket", :mode=>"750", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'graphdir': 'File[/var/lib/puppet/state/graphs]{:path=>"/var/lib/puppet/state/graphs", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'pluginfactdest': 'File[/var/lib/puppet/facts.d]{:path=>"/var/lib/puppet/facts.d", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: /File[/var/lib/puppet/state]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/lib]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/preview]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/ssl/certs]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/ssl]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/ssl/public_keys]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/ssl/certificate_requests]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/ssl/private_keys]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/ssl/private]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/ssl/private_keys/slave.bb.dnainternet.fi.pem]: Autorequiring File[/var/lib/puppet/ssl/private_keys]
+Debug: /File[/var/lib/puppet/ssl/public_keys/slave.bb.dnainternet.fi.pem]: Autorequiring File[/var/lib/puppet/ssl/public_keys]
+Debug: /File[/var/lib/puppet/client_yaml]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/client_data]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/clientbucket]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/state/graphs]: Autorequiring File[/var/lib/puppet/state]
+Debug: /File[/var/lib/puppet/facts.d]: Autorequiring File[/var/lib/puppet]
+Debug: Finishing transaction 12768680
+Debug: Evicting cache entry for environment 'production'
+Debug: Caching environment 'production' (ttl = 0 sec)
+Debug: Evicting cache entry for environment 'production'
+Debug: Caching environment 'production' (ttl = 0 sec)
+Debug: Evicting cache entry for environment 'production'
+Debug: Caching environment 'production' (ttl = 0 sec)
+Debug: Evicting cache entry for environment 'production'
+Debug: Caching environment 'production' (ttl = 0 sec)
+Debug: Evicting cache entry for environment 'production'
+Debug: Caching environment 'production' (ttl = 0 sec)
+Debug: Evicting cache entry for environment 'production'
+Debug: Caching environment 'production' (ttl = 0 sec)
+Debug: Evicting cache entry for environment 'production'
+Debug: Caching environment 'production' (ttl = 0 sec)
+Debug: Runtime environment: puppet_version=3.8.5, ruby_version=2.3.1, run_mode=agent, default_encoding=UTF-8
+Debug: Using settings: adding file resource 'confdir': 'File[/etc/puppet]{:path=>"/etc/puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'vardir': 'File[/var/lib/puppet]{:path=>"/var/lib/puppet", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'logdir': 'File[/var/log/puppet]{:path=>"/var/log/puppet", :mode=>"750", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'statedir': 'File[/var/lib/puppet/state]{:path=>"/var/lib/puppet/state", :mode=>"1755", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'rundir': 'File[/run/puppet]{:path=>"/run/puppet", :mode=>"755", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'libdir': 'File[/var/lib/puppet/lib]{:path=>"/var/lib/puppet/lib", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'preview_outputdir': 'File[/var/lib/puppet/preview]{:path=>"/var/lib/puppet/preview", :mode=>"750", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'certdir': 'File[/var/lib/puppet/ssl/certs]{:path=>"/var/lib/puppet/ssl/certs", :mode=>"755", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'ssldir': 'File[/var/lib/puppet/ssl]{:path=>"/var/lib/puppet/ssl", :mode=>"771", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'publickeydir': 'File[/var/lib/puppet/ssl/public_keys]{:path=>"/var/lib/puppet/ssl/public_keys", :mode=>"755", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'requestdir': 'File[/var/lib/puppet/ssl/certificate_requests]{:path=>"/var/lib/puppet/ssl/certificate_requests", :mode=>"755", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'privatekeydir': 'File[/var/lib/puppet/ssl/private_keys]{:path=>"/var/lib/puppet/ssl/private_keys", :mode=>"750", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'privatedir': 'File[/var/lib/puppet/ssl/private]{:path=>"/var/lib/puppet/ssl/private", :mode=>"750", :owner=>"puppet", :group=>"puppet", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'hostprivkey': 'File[/var/lib/puppet/ssl/private_keys/slave.bb.dnainternet.fi.pem]{:path=>"/var/lib/puppet/ssl/private_keys/slave.bb.dnainternet.fi.pem", :mode=>"640", :owner=>"puppet", :group=>"puppet", :ensure=>:file, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'hostpubkey': 'File[/var/lib/puppet/ssl/public_keys/slave.bb.dnainternet.fi.pem]{:path=>"/var/lib/puppet/ssl/public_keys/slave.bb.dnainternet.fi.pem", :mode=>"644", :owner=>"puppet", :group=>"puppet", :ensure=>:file, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: Using settings: adding file resource 'pluginfactdest': 'File[/var/lib/puppet/facts.d]{:path=>"/var/lib/puppet/facts.d", :ensure=>:directory, :loglevel=>:debug, :links=>:follow, :backup=>false}'
+Debug: /File[/var/lib/puppet/state]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/lib]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/preview]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/ssl/certs]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/ssl]: Autorequiring File[/var/lib/puppet]
+Debug: /File[/var/lib/puppet/ssl/public_keys]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/ssl/certificate_requests]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/ssl/private_keys]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/ssl/private]: Autorequiring File[/var/lib/puppet/ssl]
+Debug: /File[/var/lib/puppet/ssl/private_keys/slave.bb.dnainternet.fi.pem]: Autorequiring File[/var/lib/puppet/ssl/private_keys]
+Debug: /File[/var/lib/puppet/ssl/public_keys/slave.bb.dnainternet.fi.pem]: Autorequiring File[/var/lib/puppet/ssl/public_keys]
+Debug: /File[/var/lib/puppet/facts.d]: Autorequiring File[/var/lib/puppet]
+Debug: Finishing transaction 17481660
+Debug: Creating new connection for https://master:8140
+Error: Could not request certificate: execution expired
+Exiting; failed to retrieve certificate and waitforcert is disabled
+xubuntu@xubuntu:~$ 
+```
