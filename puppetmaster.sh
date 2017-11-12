@@ -12,8 +12,8 @@ echo "*******************************************"
 echo "Kloonataan repository ja kopioidaan tiedostot"
 echo "*******************************************"
 git clone https://github.com/mcleppala/puppetconf
-sudo cp -r /home/$USER/puppetconf/modules/moiminna /etc/puppet/modules/
-sudo cp -r /home/$USER/puppetconf/manifests/site.pp /etc/puppet/manifests/
+sudo cp -r /home/$USER/puppetconf/puppet/modules/moiminna /etc/puppet/modules/
+sudo cp -r /home/$USER/puppetconf/puppet/manifests/site.pp /etc/puppet/manifests/
 echo "*******************************************"
 echo "Poistetaan tilaa viemästä GitHub klooni"
 echo "*******************************************"
