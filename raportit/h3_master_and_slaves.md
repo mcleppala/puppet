@@ -57,6 +57,7 @@ H/W path                Device      Class       Description
 xubuntu@xubuntu:~$ 
 ```
 Masterina käytin samaa vanhaa [konettani](https://minnaleppala.files.wordpress.com/2017/08/lista.png?w=1000).
+UPDATE: Jouduin vaihtamaan käyttööni ystäväni koneen, kun omani ei toiminut. Tarkemmin tässä raportissa myöhemmässä vaiheessa.
 
 Aloitin tehtävän tekemisen toistamalla edeltävän viikon [tehtävän](https://github.com/mcleppala/puppet/blob/master/raportit/h2_livetikku_asetukset_githubista.md) vaiheet. 
 
@@ -292,7 +293,7 @@ Yritn tunnin ajan saada hommaa toimimaan, mutta jostain syystä en saa vaan sert
 ```
 sudo apt-get install -y virtualbox vagrant
 ```
-Mutta tässäkin tulee virhettä, joten nyt alan olla epätoivoinen
+Mutta tässäkin tulee virhettä, joten nyt alan olla epätoivoinen.
 ```
 minna@master:~$ sudo apt-get install virtualbox
 Reading package lists... Done
@@ -348,3 +349,95 @@ Processing triggers for ureadahead (0.100.0-19) ...
 minna@master:~$ 
 
 ```
+Ratkaisin yllä olevan ongelman siis hankkimalla vielä yhden koneen lisää. Alla koneen tarkemmat tiedot.
+```
+xubuntu@xubuntu:~$ sudo lshw -short -sanitize
+H/W path                 Device      Class          Description
+===============================================================
+                                     system         N73JF
+/0                                   bus            N73JF
+/0/0                                 memory         64KiB BIOS
+/0/4                                 processor      Intel(R) Core(TM) i5 CPU       M 460  @ 2.53GHz
+/0/4/5                               memory         32KiB L1 cache
+/0/4/6                               memory         256KiB L2 cache
+/0/4/7                               memory         3MiB L3 cache
+/0/41                                memory         6GiB System Memory
+/0/41/0                              memory         4GiB SODIMM DDR3 Synchronous 1067 MHz (0.9 ns)
+/0/41/1                              memory         DIMM [empty]
+/0/41/2                              memory         2GiB SODIMM DDR3 Synchronous 1067 MHz (0.9 ns)
+/0/41/3                              memory         DIMM [empty]
+/0/100                               bridge         Core Processor DRAM Controller
+/0/100/1                             bridge         Core Processor PCI Express x16 Root Port
+/0/100/1/0                           display        GF108M [GeForce GT 425M]
+/0/100/2                             display        Core Processor Integrated Graphics Controller
+/0/100/16                            communication  5 Series/3400 Series Chipset HECI Controller
+/0/100/1a                            bus            5 Series/3400 Series Chipset USB2 Enhanced Host Controller
+/0/100/1a/1              usb1        bus            EHCI Host Controller
+/0/100/1a/1/1                        bus            Integrated Rate Matching Hub
+/0/100/1a/1/1/2                      multimedia     USB2.0 UVC 2M WebCam
+/0/100/1a/1/1/5                      communication  BT-270
+/0/100/1b                            multimedia     5 Series/3400 Series Chipset High Definition Audio
+/0/100/1c                            bridge         5 Series/3400 Series Chipset PCI Express Root Port 1
+/0/100/1c.1                          bridge         5 Series/3400 Series Chipset PCI Express Root Port 2
+/0/100/1c.1/0            wls1        network        AR9285 Wireless Network Adapter (PCI-Express)
+/0/100/1c.3                          bridge         5 Series/3400 Series Chipset PCI Express Root Port 4
+/0/100/1c.3/0                        bus            Fresco Logic
+/0/100/1c.3/0/0          usb3        bus            xHCI Host Controller
+/0/100/1c.3/0/1          usb4        bus            xHCI Host Controller
+/0/100/1c.4                          bridge         5 Series/3400 Series Chipset PCI Express Root Port 5
+/0/100/1c.5                          bridge         5 Series/3400 Series Chipset PCI Express Root Port 6
+/0/100/1c.5/0            ens5        network        AR8131 Gigabit Ethernet
+/0/100/1d                            bus            5 Series/3400 Series Chipset USB2 Enhanced Host Controller
+/0/100/1d/1              usb2        bus            EHCI Host Controller
+/0/100/1d/1/1                        bus            Integrated Rate Matching Hub
+/0/100/1d/1/1/3          scsi6       storage        Mass Storage Device
+/0/100/1d/1/1/3/0.0.0    /dev/sdb    disk           32GB SCSI Disk
+/0/100/1d/1/1/3/0.0.0/1  /dev/sdb1   volume         29GiB Windows FAT volume
+/0/100/1e                            bridge         82801 Mobile PCI Bridge
+/0/100/1f                            bridge         HM55 Chipset LPC Interface Controller
+/0/100/1f.2                          storage        5 Series/3400 Series Chipset 4 port SATA AHCI Controller
+/0/100/1f.6                          generic        5 Series/3400 Series Chipset Thermal Subsystem
+/0/101                               bridge         Core Processor QuickPath Architecture Generic Non-core Registers
+/0/102                               bridge         Core Processor QuickPath Architecture System Address Decoder
+/0/103                               bridge         Core Processor QPI Link 0
+/0/104                               bridge         1st Generation Core i3/5/7 Processor QPI Physical 0
+/0/105                               bridge         1st Generation Core i3/5/7 Processor Reserved
+/0/106                               bridge         1st Generation Core i3/5/7 Processor Reserved
+/0/1                     scsi0       storage        
+/0/1/0.0.0               /dev/sda    disk           640GB ST9640320AS
+/0/1/0.0.0/1             /dev/sda1   volume         21GiB Windows FAT volume
+/0/1/0.0.0/2             /dev/sda2   volume         148GiB Windows NTFS volume
+/0/1/0.0.0/3             /dev/sda3   volume         451MiB Windows NTFS volume
+/0/1/0.0.0/4             /dev/sda4   volume         425GiB Extended partition
+/0/1/0.0.0/4/5           /dev/sda5   volume         425GiB HPFS/NTFS partition
+/0/2                     scsi1       storage        
+/0/2/0.0.0               /dev/cdrom  disk           BD  E  DS4E1S
+xubuntu@xubuntu:~$ 
+```
+Sitten paketinhallinan päivitys komennolla
+```
+sudo apt-get update
+```
+Ja jälleen törmään appstreamin virheeseen, nyt minua alkaa jo todella hermostuttamaan.
+```
+** (appstreamcli:2964): CRITICAL **: Error while moving old database out of the way.
+AppStream cache update failed.
+Reading package lists... Done
+xubuntu@xubuntu:~$ sudo apt install appstream/xenial-backports
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+E: Release 'xenial-backports' for 'appstream' was not found
+xubuntu@xubuntu:~$ appstreamcli --version
+AppStream CLI tool version: 0.9.4
+```
+Sama ongelmahan minulla oli myös slave-koneessa. Löysin tähän onneksi kuitenkin [ohjeen](https://administratosphere.wordpress.com/2016/12/25/appstream-error-in-ubuntu-16-04-xenial/), mutta se ei täysin toiminut. j
+Minun piti ensin muuttaa Software & Updates asetuksia, siten että sallin myös Unsupported updates kuvan mukaan
+![updates](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/updates.png). Tämän jälkeen sain asennettua appstreamin uuden version ja sain ajettua updaten virheittä läpi.
+
+Vihdoinkin pääsen asentamaan ohjelmia komennolla
+```
+sudo apt-get install -y puppetmaster tree git virtualbox vagrant
+```
+Ja nyt kaikki menee ongelmitta läpi. Aloitan tämän raportin Masterin asetukset otsikosta eteenpäin muokkaamaan koneen tietoja.
+Muutin myös slaven host-tiedostoon uuden koneen ip-osoitteen masterin kohdalle.
