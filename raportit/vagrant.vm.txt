@@ -1,0 +1,108 @@
+--- !ruby/object:Puppet::Node::Facts
+  name: vagrant.vm
+  values:
+    lsbdistid: Ubuntu
+    kernelmajversion: "4.4"
+    interfaces: "eth0,lo"
+    kernel: Linux
+    ipaddress_eth0: "10.0.2.15"
+    macaddress_eth0: "08:00:27:67:d9:b9"
+    netmask_eth0: "255.255.255.0"
+    mtu_eth0: "1500"
+    ipaddress_lo: "127.0.0.1"
+    netmask_lo: "255.0.0.0"
+    mtu_lo: "65536"
+    selinux: "false"
+    lsbdistrelease: "16.04"
+    fqdn: vagrant.vm
+    sshdsakey: "AAAAB3NzaC1kc3MAAACBALKXFzIIVqGgOJJj6zO3OB+zsXewZCdMH2GdG3oNG4XYP2k9snAZwkzYHkc+lmp27OF/JQKXIwkQm345ukRQTWBo7Y9TIpEx4$
+    sshfp_dsa: |-
+      SSHFP 2 1 921641a4d3b771fc1890e7e16a2bac56d6dfa25a
+      SSHFP 2 2 f581792eee31c789616d9f87d137088618997bbde7bf66c55e6ff94682456a01
+    sshrsakey: "AAAAB3NzaC1yc2EAAAADAQABAAABAQDGfeFZhWNXtY8R+r2P3fpvg+91Y4OgRN7HtfqjLE+xr9XvPj+NyDWPc2XHV1GwZSZpTjZMJRdy6iztBWLrEvFEi$
+    sshfp_rsa: |-
+      SSHFP 1 1 0226c504a6b4f4abe551bbf331342eab0d9a2752
+      SSHFP 1 2 6c76130cbfb9df02c7f6855591cdfb0a593a611e84dcb797bb60cababe53e153
+    sshecdsakey: "AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFFZ0Hm6/Zy9XIw1eCY+SCdccwI3M6hYsPcZ4bmvpGJ00WeZ0t8DIvthucGmW+j$
+    sshfp_ecdsa: |-
+      SSHFP 3 1 b7a5ae71af5720677185f8c254706c0e41cd384d
+      SSHFP 3 2 c16aa8c157d49442e001cd7d875c046d0db6872479f361ff799563a6fd80933a
+    sshed25519key: "AAAAC3NzaC1lZDI1NTE5AAAAINaIxoVmJT1ezT8Tgye/pmXO2t6pRF71Z1SqNEJtgY++"
+    sshfp_ed25519: |-
+      SSHFP 4 1 33b0ce1b325e74145d86b183c14b9e8b8bea02b0
+      SSHFP 4 2 21dc94a734bcb09efd8c2c7799a46ed80d88d8963e3fd10eb1f3ac6712a7c714
+    virtual: kvm
+    is_virtual: "true"
+    architecture: amd64
+    hardwaremodel: x86_64
+    operatingsystem: Ubuntu
+    os: "{\x22name\x22=>\x22Ubuntu\x22, \x22family\x22=>\x22Debian\x22, \x22release\x22=>{\x22major\x22=>\x2216.04\x22, \x22full\x22=$
+    uptime_days: "0"
+    puppetversion: "3.8.5"
+    augeasversion: "1.4.0"
+    memorysize: "992.28 MB"
+    memoryfree: "843.55 MB"
+    swapsize: "1024.00 MB"
+    swapfree: "1024.00 MB"
+    swapsize_mb: "1024.00"
+    swapfree_mb: "1024.00"
+    memorysize_mb: "992.28"
+    memoryfree_mb: "843.55"
+    timezone: UTC
+    uptime_hours: "0"
+    partitions: "{\x22sda1\x22=>{\x22uuid\x22=>\x22f9b9ba87-fe5d-410b-af6f-b3c90a9b88a1\x22, \x22size\x22=>\x22997376\x22, \x22mount\$
+    boardmanufacturer: "Oracle Corporation"
+    boardproductname: VirtualBox
+    boardserialnumber: "0"
+    bios_vendor: "innotek GmbH"
+    bios_version: VirtualBox
+    bios_release_date: "12/01/2006"
+    manufacturer: "innotek GmbH"
+    productname: VirtualBox
+    serialnumber: "0"
+    uuid: "4383080A-D404-4D51-BF31-62CA51C3EA77"
+    type: Other
+    rubysitedir: /usr/local/lib/site_ruby/2.3.0
+    hardwareisa: x86_64
+    path: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    rubyversion: "2.3.1"
+    operatingsystemmajrelease: "16.04"
+    processors: "{\x22models\x22=>[\x22Intel(R) Core(TM) i5 CPU       M 460  @ 2.53GHz\x22], \x22count\x22=>1, \x22physicalcount\x22=$
+    processor0: "Intel(R) Core(TM) i5 CPU       M 460  @ 2.53GHz"
+    processorcount: "1"
+    blockdevice_sda_size: "42949672960"
+    blockdevice_sda_vendor: ATA
+    blockdevice_sda_model: "VBOX HARDDISK"
+    blockdevices: sda
+    id: root
+    network_eth0: "10.0.2.0"
+    network_lo: "127.0.0.0"
+    uptime: "0:18 hours"
+    uptime_seconds: "1099"
+    kernelrelease: "4.4.0-87-generic"
+    facterversion: "2.4.6"
+    gid: root
+    rubyplatform: x86_64-linux-gnu
+    macaddress: "08:00:27:67:d9:b9"
+    osfamily: Debian
+    physicalprocessorcount: "1"
+    hostname: vagrant
+    operatingsystemrelease: "16.04"
+    ps: "ps -ef"
+    lsbmajdistrelease: "16.04"
+    lsbdistcodename: xenial
+    netmask: "255.255.255.0"
+    filesystems: "btrfs,ext2,ext3,ext4,squashfs,vfat"
+    domain: vm
+    lsbdistdescription: "Ubuntu 16.04.3 LTS"
+    ipaddress: "10.0.2.15"
+    system_uptime: "{\x22seconds\x22=>1099, \x22hours\x22=>0, \x22days\x22=>0, \x22uptime\x22=>\x220:18 hours\x22}"
+    uniqueid: "007f0101"
+   kernelversion: "4.4.0"
+    clientcert: vagrant.vm
+    clientversion: "3.8.5"
+    clientnoop: "false"
+    "_timestamp": 2017-11-12 23:05:10.755773 +02:00
+  expiration: 2017-11-12 21:35:09.702860 +00:00
+
+

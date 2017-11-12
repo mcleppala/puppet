@@ -1,0 +1,98 @@
+--- !ruby/object:Puppet::Node::Facts
+  name: slave.bb.dnainternet.fi
+  values:
+    osfamily: Debian
+    kernel: Linux
+    blockdevice_sr0_size: "1073741312"
+    blockdevice_sr0_vendor: MATSHITA
+    blockdevice_sr0_model: "DVD-RAM UJ880AS"
+    blockdevice_sda_size: "320072933376"
+    blockdevice_sda_vendor: ATA
+    blockdevice_sda_model: "Hitachi HTS54323"
+    blockdevices: "sda,sr0"
+    operatingsystem: Ubuntu
+    network_lo: "127.0.0.0"
+    network_wlp5s0: "192.168.1.0"
+    processors: "{\x22models\x22=>[\x22Pentium(R) Dual-Core CPU       T4200  @ 2.00GHz\x22, \x22Pentium(R) Dual-Core CPU       T4200 $
+    architecture: amd64
+    hardwaremodel: x86_64
+    os: "{\x22name\x22=>\x22Ubuntu\x22, \x22family\x22=>\x22Debian\x22, \x22release\x22=>{\x22major\x22=>\x2216.04\x22, \x22full\x22=$
+    processor0: "Pentium(R) Dual-Core CPU       T4200  @ 2.00GHz"
+    processor1: "Pentium(R) Dual-Core CPU       T4200  @ 2.00GHz"
+    processorcount: "2"
+    operatingsystemmajrelease: "16.04"
+    rubyplatform: x86_64-linux-gnu
+    fqdn: slave.bb.dnainternet.fi
+    ps: "ps -ef"
+    virtual: physical
+    is_virtual: "false"
+    ipaddress: "192.168.1.102"
+    system_uptime: "{\x22seconds\x22=>131334, \x22hours\x22=>36, \x22days\x22=>1, \x22uptime\x22=>\x221 day\x22}"
+    facterversion: "2.4.6"
+    id: root
+    netmask: "255.255.255.0"
+    augeasversion: "1.4.0"
+    dhcp_servers: "{\x22system\x22=>\x22192.168.1.1\x22, \x22wlp5s0\x22=>\x22192.168.1.1\x22}"
+    lsbdistdescription: "Ubuntu 16.04.3 LTS"
+    lsbmajdistrelease: "16.04"
+    kernelversion: "4.10.0"
+    boardmanufacturer: "ASUSTeK Computer Inc."
+    boardproductname: K50IN
+    boardserialnumber: BSN12345678901234567
+    bios_vendor: "American Megatrends Inc."
+    bios_version: "207"
+    bios_release_date: "05/08/2009"
+    manufacturer: "ASUSTeK Computer Inc."
+    productname: K50IN
+    serialnumber: "100533200013"
+    uuid: "892981DE-556A-4F1E-B380-0026183B65EC"
+    type: Notebook
+    uptime_days: "1"
+    physicalprocessorcount: "1"
+    uptime: "1 day"
+    timezone: EET
+    uptime_seconds: "131334"
+    lsbdistcodename: xenial
+    domain: bb.dnainternet.fi
+    filesystems: "ext2,ext3,ext4,squashfs,vfat"
+    path: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    gid: root
+    memorysize: "3.86 GB"
+    memoryfree: "2.60 GB"
+    swapsize: "0.00 MB"
+    swapfree: "0.00 MB"
+    swapsize_mb: "0.00"
+    swapfree_mb: "0.00"
+    memorysize_mb: "3949.38"
+    memoryfree_mb: "2667.09"
+    rubysitedir: /usr/local/lib/site_ruby/2.3.0
+    hardwareisa: x86_64
+    rubyversion: "2.3.1"
+    interfaces: "enp4s0,lo,wlp5s0"
+    macaddress_enp4s0: "00:26:18:3b:65:ec"
+    mtu_enp4s0: "1500"
+    ipaddress_lo: "127.0.0.1"
+    netmask_lo: "255.0.0.0"
+    mtu_lo: "65536"
+    ipaddress_wlp5s0: "192.168.1.102"
+    macaddress_wlp5s0: "00:25:d3:07:91:9a"
+    netmask_wlp5s0: "255.255.255.0"
+    mtu_wlp5s0: "1500"
+    kernelmajversion: "4.10"
+    partitions: "{\x22sda2\x22=>{\x22size\x22=>\x22312560640\x22, \x22label\x22=>\x22VistaOS\x22, \x22filesystem\x22=>\x22ntfs\x22}, $
+    macaddress: "00:26:18:3b:65:ec"
+    operatingsystemrelease: "16.04"
+    kernelrelease: "4.10.0-28-generic"
+    lsbdistid: Ubuntu
+    hostname: slave
+    lsbdistrelease: "16.04"
+    selinux: "false"
+    puppetversion: "3.8.5"
+    uptime_hours: "36"
+    uniqueid: "007f0101"
+    clientcert: slave.bb.dnainternet.fi
+    clientversion: "3.8.5"
+    clientnoop: "false"
+    "_timestamp": 2017-11-12 23:04:57.622933 +02:00
+  expiration: 2017-11-12 23:34:57.584034 +02:00
+
