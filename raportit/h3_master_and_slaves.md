@@ -673,13 +673,17 @@ Menin kansioon ja Treen avulla mitä /var/lib/puppet/-kansiosta ja sen alikansio
 macaddress_eth0: "08:00:27:67:d9:b9"
 is_virtual: "true"
 ```
-Eli vagrant on virtuaalinen. Alla vielä valokuva
+UPDATE: klo 23:25, tein vimlelä kertaalleen kaikki koneet, jotta saan itselleni mielenrauhan ja tehtävät valmiiksi. Yaml/facts-kansiossa olevat .yaml-tiedostot sisälsivät kaikki tarpeellisen tiedon koneista. 
+* [slave.bb.dnainternet.fi](https://raw.githubusercontent.com/mcleppala/puppet/master/raportit/slave.bb.dnainternet.fi.txt)
+* [vagrant.vm](https://raw.githubusercontent.com/mcleppala/puppet/master/raportit/vagrant.vm.txt)
 
 
-Mutta enhän minä c-kohtaa voi tehdä, jos en asenna masteria vielä kerran uudestaan, joten syvä huokaus ja hommiin. Joka tapauksessa nyt en enää jätä mitään sattuman varaan, vaan teen [puppetmaster.sh](https://raw.githubusercontent.com/mcleppala/puppet/master/puppetmaster.sh)-tiedoston, jossa on kaikki tässä raportissa tehdyt toiminnot. Teen myös [slave.sh](https://raw.githubusercontent.com/mcleppala/puppet/master/slave.sh)-tiedoston, johon kokosin tässä raportissa tehdyt slaven asetukset.
 
 ## c) OrjaSkripti: Tee skripti, joka muuttaa koneen Puppet-orjaksi tietylle masterille. Voit katsoa mallia Tatun tai Eemelin ratkaisuista. 
-Rakensin tiedoston ottaen mallia Teron [ohjeesta](http://terokarvinen.com/2017/provision-multiple-virtual-puppet-slaves-with-vagrant). Ja lopullinen tiedosto löytyy [täältä](). En pystynyt testaamaan skriptin toimivuutta, sillä master-koneeni muistiin ei mahtunut enempää kuin yksi kerralla.
+
+Mutta enhän minä c-kohtaa voinut tehdä, jos en asenna masteria vielä kerran uudestaan, joten syvä huokaus ja hommiin. Joka tapauksessa nyt en enää jätä mitään sattuman varaan, vaan teen [puppetmaster.sh](https://raw.githubusercontent.com/mcleppala/puppet/master/puppetmaster.sh)-tiedoston, jossa on kaikki tässä raportissa tehdyt toiminnot. Teen myös [slave.sh](https://raw.githubusercontent.com/mcleppala/puppet/master/slave.sh)-tiedoston, johon kokosin tässä raportissa tehdyt slaven asetukset.
+
+Rakensin tiedoston ottaen mallia Teron [ohjeesta](http://terokarvinen.com/2017/provision-multiple-virtual-puppet-slaves-with-vagrant). Ja lopullinen tiedosto löytyy [täältä](https://raw.githubusercontent.com/mcleppala/puppet/master/Vagrantfile). En pystynyt testaamaan skriptin toimivuutta, sillä master-koneeni muistiin ei mahtunut enempää kuin yksi kerralla.
 
 ## Lähteet
 Tehtävänanto: http://terokarvinen.com/2017/aikataulu-palvelinten-hallinta-ict4tn022-3-5-op-uusi-ops-loppusyksy-2017-p5#comment-23269
