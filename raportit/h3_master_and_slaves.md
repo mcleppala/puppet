@@ -577,7 +577,8 @@ Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-87-generic x86_64)
 
 vagrant@slave01:~$ exit
 ```
-Jotain vikaahan tuossa taas on, ei muuta kuin selvittämään. Mieleeni tuli, että tunnilla taisi olla vastaava ongelma ja se liittyi jotenkin muistin loppumiseen
+Jotain vikaahan tuossa taas on, ei muuta kuin selvittämään. Mieleeni tuli, että tunnilla taisi olla vastaava ongelma ja se liittyi jotenkin muistin loppumiseen. Tarkistin koneeni ja jostain syystä livetikku ei ollutkaan käynnistynyt muistiin, vaan ajoi suoraan tikulta. Tarkistin livetikun asetuksista, mitä olin laittanut asetuksiin ja siellä kyllä löytyivät toram noprompt, mutta jostain syystä boottaus ei onnistu suoraan muistiin. Minun ei siis auta muu kuin bootata kone uudestaan ja manuaalisesti muuttaa tuo asetus. Sinänsä mielenkiintoista, kun slave-koneella homma toimi, mutta ei master-koneella sitten. Turhauttavaa tehdä taas reiska tunti samoja hommia uudestaan, mutta eihän tässä muutakaan voi. Ehkäpä tämän jälkeen osaan nuo master-koneen astusten tekemisen ulkoa.
+
 
 ## 
 http://terokarvinen.com/2017/provision-multiple-virtual-puppet-slaves-with-vagrant
