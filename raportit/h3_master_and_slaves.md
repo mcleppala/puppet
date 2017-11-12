@@ -438,9 +438,16 @@ E: Release 'xenial-backports' for 'appstream' was not found
 xubuntu@xubuntu:~$ appstreamcli --version
 AppStream CLI tool version: 0.9.4
 ```
-Sama ongelmahan minulla oli myös slave-koneessa. Löysin tähän onneksi kuitenkin [ohjeen](https://administratosphere.wordpress.com/2016/12/25/appstream-error-in-ubuntu-16-04-xenial/), mutta se ei täysin toiminut. j
+Sama ongelmahan minulla oli myös slave-koneessa. Löysin tähän onneksi kuitenkin [ohjeen](https://administratosphere.wordpress.com/2016/12/25/appstream-error-in-ubuntu-16-04-xenial/), mutta se ei täysin toiminut. 
 Minun piti ensin muuttaa Software & Updates asetuksia, siten että sallin myös Unsupported updates kuvan mukaan
-![updates](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/updates.png). Tämän jälkeen sain asennettua appstreamin uuden version ja sain ajettua updaten virheittä läpi.
+
+![updates](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/updates.png). 
+
+Sitten komento
+```
+sudo apt-get install appstream/xenial-backports
+```
+Tämän jälkeen sain asennettua appstreamin uuden version ja sain ajettua updaten virheittä läpi.
 
 Vihdoinkin pääsen asentamaan ohjelmia komennolla
 ```
