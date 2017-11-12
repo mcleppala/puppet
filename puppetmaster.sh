@@ -33,7 +33,8 @@ echo "*******************************************"
 cd
 mkdir vagrant
 cd vagrant/
-wget https://raw.githubusercontent.com/mcleppala/puppet/master/Vagrantfile
+#wget https://raw.githubusercontent.com/mcleppala/puppet/master/Vagrantfile
+vagrant init bento/ubuntu-16.04
 vagrant up
 echo "*******************************************"
 echo "Asennus valmis."
