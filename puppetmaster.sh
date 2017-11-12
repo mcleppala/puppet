@@ -32,7 +32,7 @@ echo "Tehdään yksi virtuaalikone"
 echo "*******************************************"
 cd
 mkdir vagrant
-cd /vagrant
+cd vagrant/
 wget https://raw.githubusercontent.com/mcleppala/puppet/master/Vagrantfile
 vagrant up
 echo "*******************************************"
