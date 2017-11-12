@@ -467,3 +467,15 @@ Notice: Signed certificate request for slave.bb.dnainternet.fi
 Notice: Removing file Puppet::SSL::CertificateRequest slave.bb.dnainternet.fi at '/var/lib/puppet/ssl/ca/requests/slave.bb.dnainternet.fi.pem'
 ```
 Sitten testaamaan hain github repostani yksinkertaisen testisivun, jonka kopioin /etc/puppet-kansioon. Uudelleen käynnistän slavella puppetin ja käyn katsomassa onnistuiko slave hakemaan masterilta tiedoston komennolla 
+```
+xubuntu@slave:~$ cat /tmp/moiminna 
+Moi Minna, moduuli rokkaa!
+xubuntu@slave:~$ 
+```
+Ensimmäinen vaihe siis onnistuneesti tehty. Olen saanut rauta-orjan vihdoin valmiiksi. 
+
+### Virtuaali-slavet
+Tätä varten asensinkin jo masterille VirtualBoxin ja Vagrantin. Seuraan tässä muistinvirkistämiseksi Teron ohjetta
+
+## 
+http://terokarvinen.com/2017/provision-multiple-virtual-puppet-slaves-with-vagrant
