@@ -456,5 +456,14 @@ sudo puppet agent -tdv
 ```
 Nyt en saanut enää virhettä ja siirryn master koneelle ja henkeä pidätellen kirjoitan komennon
 ```
-
+xubuntu@master:~$ sudo puppet cert list
+  "slave.bb.dnainternet.fi" (SHA256) 29:1B:21:D9:15:AE:E1:99:BD:CC:14:9F:59:22:D0:F0:B2:42:E4:7E:49:04:62:3A:69:2F:10:7E:BC:43:C4:EA
+xubuntu@master:~$ 
 ```
+Ja kuten yllä näkyy, saan vihdoin slaven pyynnön. Tämän jälkeen siis enää allekirjoitus komennolla
+```
+xubuntu@master:~$ sudo puppet cert --sign slave.bb.dnainternet.fi
+Notice: Signed certificate request for slave.bb.dnainternet.fi
+Notice: Removing file Puppet::SSL::CertificateRequest slave.bb.dnainternet.fi at '/var/lib/puppet/ssl/ca/requests/slave.bb.dnainternet.fi.pem'
+```
+Sitten testaamaan hain github repostani yksinkertaisen testisivun, jonka kopioin /etc/puppet-kansioon. Uudelleen käynnistän slavella puppetin ja käyn katsomassa onnistuiko slave hakemaan masterilta tiedoston komennolla 
