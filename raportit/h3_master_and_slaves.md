@@ -440,4 +440,21 @@ Vihdoinkin pääsen asentamaan ohjelmia komennolla
 sudo apt-get install -y puppetmaster tree git virtualbox vagrant
 ```
 Ja nyt kaikki menee ongelmitta läpi. Aloitan tämän raportin Masterin asetukset otsikosta eteenpäin muokkaamaan koneen tietoja.
-Muutin myös slaven host-tiedostoon uuden koneen ip-osoitteen masterin kohdalle.
+Muutin myös slaven host-tiedostoon uuden koneen ip-osoitteen masterin kohdalle. Testasin vielä pingillä yhteyden ja slave löytää masterin
+```
+xubuntu@slave:~$ ping -c 1 master
+PING master (192.168.1.103) 56(84) bytes of data.
+64 bytes from master (192.168.1.103): icmp_seq=1 ttl=64 time=1.60 ms
+
+--- master ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 1.605/1.605/1.605/0.000 ms
+```
+Koittaa totuuden hetki, saanko nyt yhteyden toimimaan slavella ensin komento
+```
+sudo puppet agent -tdv
+```
+Nyt en saanut enää virhettä ja siirryn master koneelle ja henkeä pidätellen kirjoitan komennon
+```
+
+```
