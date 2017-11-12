@@ -34,6 +34,7 @@ cd
 mkdir vagrant
 cd /vagrant
 wget https://raw.githubusercontent.com/mcleppala/puppet/master/Vagrantfile
+vagrant up
 echo "*******************************************"
 echo "Asennus valmis."
 echo "*******************************************"
