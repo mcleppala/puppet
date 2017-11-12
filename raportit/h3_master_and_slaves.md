@@ -675,5 +675,10 @@ Mutta enhän minä c-kohtaa voi tehdä, jos en asenna masteria vielä kerran uud
 Rakensin tiedoston ottaen mallia Teron [ohjeesta](http://terokarvinen.com/2017/provision-multiple-virtual-puppet-slaves-with-vagrant). Ja lopullinen tiedosto löytyy [täältä](). En pystynyt testaamaan skriptin toimivuutta, sillä master-koneeni muistiin ei mahtunut enempää kuin yksi kerralla.
 
 ## Lähteet
-Tehtävänanto: http://terokarvinen.com/2017/aikataulu-palvelinten-hallinta-ict4tn022-3-5-op-uusi-ops-loppusyksy-2017-p5
+Tehtävänanto: http://terokarvinen.com/2017/aikataulu-palvelinten-hallinta-ict4tn022-3-5-op-uusi-ops-loppusyksy-2017-p5#comment-23269
+Minna Leppälä Wordpress: https://minnaleppala.files.wordpress.com/2017/08/lista.png?w=1000
+Raportti h2: https://github.com/mcleppala/puppet/blob/master/raportit/h2_livetikku_asetukset_githubista.md
+Appstream korjaus ohje: https://askubuntu.com/questions/854168/how-i-can-fix-appstream-cache-update-completed-but-some-metadata-was-ignored-d
+Teron Vagrantfile ohje: http://terokarvinen.com/2017/provision-multiple-virtual-puppet-slaves-with-vagrant
+
 
