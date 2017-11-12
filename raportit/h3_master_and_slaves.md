@@ -579,6 +579,82 @@ vagrant@slave01:~$ exit
 ```
 Jotain vikaahan tuossa taas on, ei muuta kuin selvittämään. Mieleeni tuli, että tunnilla taisi olla vastaava ongelma ja se liittyi jotenkin muistin loppumiseen. Tarkistin koneeni ja jostain syystä livetikku ei ollutkaan käynnistynyt muistiin, vaan ajoi suoraan tikulta. Tarkistin livetikun asetuksista, mitä olin laittanut asetuksiin ja siellä kyllä löytyivät toram noprompt, mutta jostain syystä boottaus ei onnistu suoraan muistiin. Minun ei siis auta muu kuin bootata kone uudestaan ja manuaalisesti muuttaa tuo asetus. Sinänsä mielenkiintoista, kun slave-koneella homma toimi, mutta ei master-koneella sitten. Turhauttavaa tehdä taas reiska tunti samoja hommia uudestaan, mutta eihän tässä muutakaan voi. Ehkäpä tämän jälkeen osaan nuo master-koneen astusten tekemisen ulkoa.
 
+Toistin yllä olevat toimenpiteet ja sain taas masterin ja rauta-slaven keskustelemaan keskenään, aikaa meni noin 
+20 minuuttia eli alan selkeästi kehittymään. Uusi yritys Vagrantfilen kanssa. Onneksi olin dokumentoinut tehdessäni tiedot tarkasti, niin sain nopeasti uuden Vagrantfilen ja käynnistin sen komennolla /home/xubuntu/vagrantslaves/-kansiossa.
+```
+vagrant up
+```
+Ajo alkoi pyörimään ongelmitta. Mutta taas asennus kaatuu toisen slaven kohdalla. Asennus luo kotihakemistoon /home/xubuntu/VirtualBox VMs/vagrantslaves_slave01_1510495111482_72608, jonka koko on 1,5Gb ja tyhjää tilaa on enää 415.9MB. Yhden slaven tuo ehtii luomaan, joten teen nyt tässä kohtaa tuon osion, kun on yksi rauta ja yksi virtuaalinen slave olemassa.
+
+Päätän kuitenkin tuhota äskeisen skriptin tekemän slaven komennolla
+```
+vagrant destroy slave01
+```
+Ja ajan yksinkertaisesti kolme komentoa, joilla saan yhden koneen pystyyn
+```
+vagrant init bento/ubuntu-16.04
+vagrant up
+vagrant ssh
+```
+Muutan vagrant-koneen hosts-tiedoston seuraavasti
+```
+127.0.0.1       localhost
+127.0.1.1       vagrant.vm      vagrant
+192.168.1.103   master
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+```
+Ja muutan hostnamen komennolla
+```
+hostnamectl set-hostname vagrant
+```
+Ja testataan pingillä yhteys
+```
+vagrant@vagrant:~$ ping -c 1 master
+PING master (192.168.1.103) 56(84) bytes of data.
+64 bytes from master (192.168.1.103): icmp_seq=1 ttl=63 time=0.340 ms
+
+--- master ping statistics ---
+1 packets transmitted, 1 received, 0% packet loss, time 0ms
+rtt min/avg/max/mdev = 0.340/0.340/0.340/0.000 ms
+vagrant@vagrant:~$ 
+```
+Sitten asennan kuten rautaankin Puppetin ja Treen. Tämän jälkeen muokkaan vagrantin puppet.confia lisäämällä agentille tiedon serveristä
+```
+[agent]
+server = master
+```
+Sitten slaven-toiminnot, joilla saadaan ssl-kansio siivottua, agentti käyntiin ja testataan yhteys
+```
+sudo service puppet restart
+sudo service puppet stop
+sudo rm -r /var/lib/puppet/ssl
+sudo service puppet start
+sudo puppet agent --enable
+sudo puppet agent -tdv
+```
+Sitten oli sertifikaatin list ja sign masterilla
+```
+xubuntu@master:~$ sudo puppet cert list
+  "vagrant.vm" (SHA256) 17:2B:A1:86:ED:5F:A7:3C:A0:02:7E:07:A6:94:5E:94:4A:83:F2:D2:02:C2:0E:54:2C:76:05:27:91:34:D6:05
+xubuntu@master:~$ sudo puppet cert --sign vagrant.vm
+Notice: Signed certificate request for vagrant.vm
+Notice: Removing file Puppet::SSL::CertificateRequest vagrant.vm at '/var/lib/puppet/ssl/ca/requests/vagrant.vm.pem'
+xubuntu@master:~$ 
+```
+Ja lopuksi vielä kävin katsomassa näkyykö vagrantin tempissä terveiset masterilta
+```
+vagrant@vagrant:~$ cat /tmp/moiminna 
+Moi Minna, moduuli rokkaa!
+vagrant@vagrant:~$ 
+```
+Virtuaali-slave yhteys toimii.
+
+##
+
 
 ## 
 http://terokarvinen.com/2017/provision-multiple-virtual-puppet-slaves-with-vagrant
