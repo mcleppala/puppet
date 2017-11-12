@@ -15,6 +15,11 @@ git clone https://github.com/mcleppala/puppetconf
 sudo cp -r /home/$USER/puppetconf/modules/moiminna /etc/puppet/modules/
 sudo cp -r /home/$USER/puppetconf/manifests/site.pp /etc/puppet/manifests/
 echo "*******************************************"
+echo "Poistetaan tilaa viemästä GitHub klooni"
+echo "*******************************************"
+cd
+sudo rm -r /home/$USER/puppetconf/
+echo "*******************************************"
 echo "Asetetaan hostname ja editoidaan hosts-tiedosto"
 echo "*******************************************"
 hostnamectl set-hostname master
