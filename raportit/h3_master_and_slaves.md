@@ -1,5 +1,5 @@
 # Herra ja useita orjia
-Kolmannen viikon [tehtävänä](http://terokarvinen.com/2017/aikataulu-palvelinten-hallinta-ict4tn022-3-5-op-uusi-ops-loppusyksy-2017-p5#comment-23269) oli asentaa useita orjia yhdelle herralle ja tutkia orjien asetuksia.
+Kolmannen viikon [tehtävänä](http://terokarvinen.com/2017/aikataulu-palvelinten-hallinta-ict4tn022-3-5-op-uusi-ops-loppusyksy-2017-p5#comment-23269) oli asentaa useita orjia yhdelle herralle ja tutkia orjien asetuksia. Erinäisistä ongelmista johtuen, jotka käyvät ilmi tästä raportista, työskentelyyn meni aikaa noin 14 tuntia, eikä tullut ihan valmista.
 
 ## a) Asenna useita orjia yhteen masteriin. Ainakin yksi rauta- ja useampia virtuaalisia orjia. 
 Edeltävällä viikolla tein viikkotehtävän VMWaren Playerillä, kun minulla ei ollut toista konetta käytössäni. Nyt onneksi olin saanut kaverin vanhan läppärin, jossa oleva Vista ei enää käynnistynyt ollenkaan. Romukone siis. Modifoin koneen biosin buuttia siten, että kone alkoi buutata suoraan tikulta. Muutos oli hieman erilainen, sillä tämä kone ei tunnistanut BIOSissa tikkua ja hetken tutkittuani huomasin, että se tulkitsee Transcend tikun kovelevyksi. Muutin siis kovalevyjen buuttijärjestyksen siten, että ensin tikku ja sitten vasta kovalevy ja sain koneen käynnistymän livetikulta.
@@ -91,6 +91,13 @@ Ja käynnistetään puppetmaster uudestaan komennolla
 ```
 sudo service puppetmaster start
 ```
+Poistetaan vielä sertifikaatit ja käynnistetään puppetmaster
+```
+sudo service puppetmaster stop
+sudo rm -r /var/lib/puppet/ssl
+sudo service puppetmaster start
+```
+
 ### Rauta-slaven asetukset
 Lisään slave-koneen hosts-tiedostoon tiedon masterista sekä slavesta edeltävällä komennolla. Alla hosts-tiedoston sisältö
 ```
@@ -653,8 +660,20 @@ vagrant@vagrant:~$
 ```
 Virtuaali-slave yhteys toimii.
 
-##
+## b) Kerää tietoa orjista: verkkokorttien MAC-numerot, virtuaalinen vai oikea… (Katso /var/lib/puppet/)
+Menin kansioon ja Treen avulla mitä /var/lib/puppet/-kansiosta ja sen alikansioista löytyy. Kiinostavalta vaikutti heti reports-kansio, mutta siellä olevissa konekohtaisissa kansioissa ei ollut MAC-numeroita, vaan transaktioista tietoja. Toinen kiinostava kansio oli var/lib/puppet/yaml/facts, jonka alla oli konekohtaisest .yaml-tiedostot. Ja sieltähän ne tarkat konekohtaiset tiedot löytyivät. Samaan aikaan master-koneeni päätti syystä tai toisesta lakata toimimasta. Kone jäätyi täydellisesti ja sain otettua vain kameralla valokuvan tuosta tiedostosta. Menetin siis taas master-koneeni ja vagrant-koneeni siinä samalla. Tämä on ollut kyllä surkeiden tapahtumien sarja koko kotitehtävän teko. Joka tapauksessa vagrantin tiedostosta siis poimin seuraavat valokuvan perusteella
+```
+macaddress_eth0: "08:00:27:67:d9:b9"
+is_virtual: "true"
+```
+Eli vagrant on virtuaalinen. Alla vielä valokuva
 
 
-## 
-http://terokarvinen.com/2017/provision-multiple-virtual-puppet-slaves-with-vagrant
+Mutta enhän minä c-kohtaa voi tehdä, jos en asenna masteria vielä kerran uudestaan, joten syvä huokaus ja hommiin. Joka tapauksessa nyt en enää jätä mitään sattuman varaan, vaan teen [puppetmaster.sh](https://raw.githubusercontent.com/mcleppala/puppet/master/puppetmaster.sh)-tiedoston, jossa on kaikki tässä raportissa tehdyt toiminnot. Teen myös [slave.sh](https://raw.githubusercontent.com/mcleppala/puppet/master/slave.sh)-tiedoston, johon kokosin tässä raportissa tehdyt slaven asetukset.
+
+## c) OrjaSkripti: Tee skripti, joka muuttaa koneen Puppet-orjaksi tietylle masterille. Voit katsoa mallia Tatun tai Eemelin ratkaisuista. 
+Rakensin tiedoston ottaen mallia Teron [ohjeesta](http://terokarvinen.com/2017/provision-multiple-virtual-puppet-slaves-with-vagrant). Ja lopullinen tiedosto löytyy [täältä](). En pystynyt testaamaan skriptin toimivuutta, sillä master-koneeni muistiin ei mahtunut enempää kuin yksi kerralla.
+
+## Lähteet
+Tehtävänanto: http://terokarvinen.com/2017/aikataulu-palvelinten-hallinta-ict4tn022-3-5-op-uusi-ops-loppusyksy-2017-p5
+
