@@ -16,10 +16,24 @@ sudo cp -r /home/$USER/puppetconf/modules/moiminna /etc/puppet/modules/
 sudo cp -r /home/$USER/puppetconf/manifests/site.pp /etc/puppet/manifests/
 echo "*******************************************"
 echo "Asetetaan hostname ja editoidaan hosts-tiedosto"
+echo "*******************************************"
 hostnamectl set-hostname master
-grep master /etc/hosts || echo -e "\n192.168.1.103 master\n"|sudo tee -a /etc/hosts
+grep master /etc/hosts || echo -e "\n127.0.0.1 master\n"|sudo tee -a /etc/hosts
 grep ^server /etc/puppet/puppet.conf || echo -e "\ndns_alt_names = puppet, master\n" |sudo tee -a /etc/puppet/puppet.conf
 sudo service puppetmaster start
+echo "*******************************************"
+echo "Pysätytetään Puppetmaster, poistetaan ssl ja käynnistys"
+echo "*******************************************"
+sudo service puppetmaster stop
+sudo rm -r /var/lib/puppet/ssl
+sudo service puppetmaster start
+echo "*******************************************"
+echo "Tehdään yksi virtuaalikone"
+echo "*******************************************"
+cd
+mkdir vagrant
+cd /vagrant
+wget https://raw.githubusercontent.com/mcleppala/puppet/master/Vagrantfile
 echo "*******************************************"
 echo "Asennus valmis."
 echo "*******************************************"
