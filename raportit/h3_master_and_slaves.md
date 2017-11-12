@@ -475,7 +475,109 @@ xubuntu@slave:~$
 Ensimmäinen vaihe siis onnistuneesti tehty. Olen saanut rauta-orjan vihdoin valmiiksi. 
 
 ### Virtuaali-slavet
-Tätä varten asensinkin jo masterille VirtualBoxin ja Vagrantin. Seuraan tässä muistinvirkistämiseksi Teron ohjetta
+Tätä varten asensinkin jo masterille VirtualBoxin ja Vagrantin. Seuraan tässä muistinvirkistämiseksi Teron [ohjetta](http://terokarvinen.com/2017/multiple-virtual-computers-in-minutes-vagrant-multimachine). Luon tätä varten kotihakemistooni vagrantslaves kansion ja sinne teen Vagrantfilen. Sitten vaan käynnistetään vagrant, alla Vagrantfile ja ja komennot, sekä ajon tulos joka taas päätyy virheeseen....
+```
+xubuntu@master:~/vagrantslaves$ cat Vagrantfile 
+# http://TeroKarvinen.com/
+Vagrant.configure(2) do |config|
+ config.vm.box = "bento/ubuntu-16.04"
+
+ config.vm.define "slave01" do |slave01|
+   slave01.vm.hostname = "slave01"
+ end
+
+ config.vm.define "slave02" do |slave02|
+   slave02.vm.hostname = "slave02"
+ end
+
+ config.vm.define "slave03" do |slave03|
+   slave03.vm.hostname = "slave03"
+ end
+end
+xubuntu@master:~/vagrantslaves$ vagrant up
+Bringing machine 'slave01' up with 'virtualbox' provider...
+Bringing machine 'slave02' up with 'virtualbox' provider...
+Bringing machine 'slave03' up with 'virtualbox' provider...
+==> slave01: Box 'bento/ubuntu-16.04' could not be found. Attempting to find and install...
+    slave01: Box Provider: virtualbox
+    slave01: Box Version: >= 0
+==> slave01: Loading metadata for box 'bento/ubuntu-16.04'
+    slave01: URL: https://atlas.hashicorp.com/bento/ubuntu-16.04
+==> slave01: Adding box 'bento/ubuntu-16.04' (v201710.25.0) for provider: virtualbox
+    slave01: Downloading: https://vagrantcloud.com/bento/boxes/ubuntu-16.04/versions/201710.25.0/providers/virtualbox.box
+==> slave01: Successfully added box 'bento/ubuntu-16.04' (v201710.25.0) for 'virtualbox'!
+==> slave01: Importing base box 'bento/ubuntu-16.04'...
+==> slave01: Matching MAC address for NAT networking...
+==> slave01: Checking if box 'bento/ubuntu-16.04' is up to date...
+==> slave01: Setting the name of the VM: vagrantslaves_slave01_1510491106711_54003
+==> slave01: Clearing any previously set network interfaces...
+==> slave01: Preparing network interfaces based on configuration...
+    slave01: Adapter 1: nat
+==> slave01: Forwarding ports...
+    slave01: 22 (guest) => 2222 (host) (adapter 1)
+==> slave01: Booting VM...
+==> slave01: Waiting for machine to boot. This may take a few minutes...
+    slave01: SSH address: 127.0.0.1:2222
+    slave01: SSH username: vagrant
+    slave01: SSH auth method: private key
+    slave01: 
+    slave01: Vagrant insecure key detected. Vagrant will automatically replace
+    slave01: this with a newly generated keypair for better security.
+    slave01: 
+    slave01: Inserting generated public key within guest...
+    slave01: Removing insecure key from the guest if it's present...
+    slave01: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> slave01: Machine booted and ready!
+==> slave01: Checking for guest additions in VM...
+    slave01: The guest additions on this VM do not match the installed version of
+    slave01: VirtualBox! In most cases this is fine, but in rare cases it can
+    slave01: prevent things such as shared folders from working properly. If you see
+    slave01: shared folder errors, please make sure the guest additions within the
+    slave01: virtual machine match the version of VirtualBox you have installed on
+    slave01: your host and reload your VM.
+    slave01: 
+    slave01: Guest Additions Version: 5.1.30
+    slave01: VirtualBox Version: 5.0
+==> slave01: Setting hostname...
+==> slave01: Mounting shared folders...
+    slave01: /vagrant => /home/xubuntu/vagrantslaves
+==> slave02: Box 'bento/ubuntu-16.04' could not be found. Attempting to find and install...
+    slave02: Box Provider: virtualbox
+    slave02: Box Version: >= 0
+==> slave02: Loading metadata for box 'bento/ubuntu-16.04'
+    slave02: URL: https://atlas.hashicorp.com/bento/ubuntu-16.04
+==> slave02: Adding box 'bento/ubuntu-16.04' (v201710.25.0) for provider: virtualbox
+==> slave02: Importing base box 'bento/ubuntu-16.04'...
+There was an error while executing `VBoxManage`, a CLI used by Vagrant
+for controlling VirtualBox. The command and stderr is shown below.
+
+Command: ["import", "/home/xubuntu/.vagrant.d/boxes/bento-VAGRANTSLASH-ubuntu-16.04/201710.25.0/virtualbox/box.ovf", "--vsys", "0", "--vmname", "ubuntu-16.04-amd64_1510491138001_33725", "--vsys", "0", "--unit", "9", "--disk", "/home/xubuntu/VirtualBox VMs/ubuntu-16.04-amd64_1510491138001_33725/ubuntu-16.04-amd64-disk001.vmdk"]
+
+Stderr: 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+Interpreting /home/xubuntu/.vagrant.d/boxes/bento-VAGRANTSLASH-ubuntu-16.04/201710.25.0/virtualbox/box.ovf...
+OK.
+0%...
+Progress state: VBOX_E_FILE_ERROR
+VBoxManage: error: Appliance import failed
+VBoxManage: error: Could not create the imported medium '/home/xubuntu/VirtualBox VMs/ubuntu-16.04-amd64_1510491138001_33725/ubuntu-16.04-amd64-disk001.vmdk'.
+VBoxManage: error: VMDK: cannot write allocated data block in '/home/xubuntu/VirtualBox VMs/ubuntu-16.04-amd64_1510491138001_33725/ubuntu-16.04-amd64-disk001.vmdk' (VERR_DISK_FULL)
+VBoxManage: error: Details: code VBOX_E_FILE_ERROR (0x80bb0004), component ApplianceWrap, interface IAppliance
+VBoxManage: error: Context: "RTEXITCODE handleImportAppliance(HandlerArg*)" at line 877 of file VBoxManageAppliance.cpp
+
+xubuntu@master:~/vagrantslaves$ vagrant ssh slave01 
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-87-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+0 packages can be updated.
+0 updates are security updates.
+
+
+vagrant@slave01:~$ exit
+```
+Jotain vikaahan tuossa taas on, ei muuta kuin selvittämään. Mieleeni tuli, että tunnilla taisi olla vastaava ongelma ja se liittyi jotenkin muistin loppumiseen
 
 ## 
 http://terokarvinen.com/2017/provision-multiple-virtual-puppet-slaves-with-vagrant
