@@ -11,7 +11,6 @@ sudo service puppet stop
 sudo rm -r /var/lib/puppet/ssl
 sudo service puppet start
 sudo puppet agent --enable
-sudo puppet agent -tdv
 TSCRIPT
 
 Vagrant.configure(2) do |config|
