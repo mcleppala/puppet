@@ -12,7 +12,8 @@ echo "*******************************************"
 echo "Asetetaan hostname ja editoidaan hosts-tiedosto"
 echo "*******************************************"
 hostnamectl set-hostname slave
-grep master /etc/hosts || echo -e "\n192.168.1.103 master\n"|sudo tee -a /etc/hosts
+grep master /etc/hosts || echo -e "\n192.168.1.103 master\n127.0.0.1 slave\n"|sudo tee -a /etc/hosts
+sudo service avahi-daemon restart
 grep ^server /etc/puppet/puppet.conf || echo -e "\n[agent]\nserver=master\n" |sudo tee -a /etc/puppet/puppet.conf
 echo "*******************************************"
 echo "Tehdään Puppetin uudelleen käynistys, ssl-kansion siivous ja testiyhteys"
