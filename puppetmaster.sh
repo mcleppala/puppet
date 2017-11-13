@@ -24,7 +24,7 @@ echo "Asetetaan hostname ja editoidaan hosts-tiedosto"
 echo "*******************************************"
 hostnamectl set-hostname master
 sudo service avahi-daemon restart
-grep master /etc/hosts || echo -e "\n127.0.0.1 master\n"|sudo tee -a /etc/hosts
+grep xubuntu /etc/hosts || echo -e "\n master\n"|sudo tee -a /etc/hosts
 grep ^server /etc/puppet/puppet.conf || echo -e "\ndns_alt_names = puppet, master\n" |sudo tee -a /etc/puppet/puppet.conf
 sudo service puppetmaster start
 echo "*******************************************"
