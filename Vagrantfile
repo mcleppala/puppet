@@ -22,11 +22,11 @@ Vagrant.configure(2) do |config|
  vagrant01.vm.hostname = "vagrant01"
  end
  
- config.vm.define "vagrant02" do |vagrant02|
- vagrant02.vm.hostname = "vagrant02"
- end 
+# config.vm.define "vagrant02" do |vagrant02|
+# vagrant02.vm.hostname = "vagrant02"
+# end 
   
- config.vm.define "vagrant03" do |vagrant03|
- vagrant03.vm.hostname = "vagrant03"
- end 
+# config.vm.define "vagrant03" do |vagrant03|
+# vagrant03.vm.hostname = "vagrant03"
+# end 
 end
