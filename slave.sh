@@ -19,6 +19,7 @@ echo "*******************************************"
 echo "Tehdään Puppetin uudelleen käynistys, ssl-kansion siivous ja testiyhteys"
 echo "*******************************************"
 sudo service puppet restart
+sudo puppet agent --disable
 sudo service puppet stop
 sudo rm -r /var/lib/puppet/ssl
 sudo service puppet start
