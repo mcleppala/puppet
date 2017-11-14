@@ -667,6 +667,51 @@ vagrant@vagrant:~$
 ```
 Virtuaali-slave yhteys toimii.
 
+**UPDATE:**testattu koulussa 14.11.2017 ja Vagrantfile toimi. Alla SSH-yhteydet kaikkiin vagrant koneisiin.
+```
+xubuntu@xubuntu:~/vagrant$ vagrant ssh vagrant01
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-87-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+24 packages can be updated.
+9 updates are security updates.
+
+
+vagrant@vagrant01:~$ exit
+logout
+Connection to 127.0.0.1 closed.
+xubuntu@xubuntu:~/vagrant$ vagrant ssh vagrant02
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-87-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+24 packages can be updated.
+9 updates are security updates.
+
+
+vagrant@vagrant02:~$ exit
+logout
+Connection to 127.0.0.1 closed.
+xubuntu@xubuntu:~/vagrant$ vagrant ssh vagrant03
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-87-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+24 packages can be updated.
+9 updates are security updates.
+
+
+vagrant@vagrant03:~$ 
+
+```
+
 ## b) Kerää tietoa orjista: verkkokorttien MAC-numerot, virtuaalinen vai oikea… (Katso /var/lib/puppet/)
 Menin kansioon ja Treen avulla mitä /var/lib/puppet/-kansiosta ja sen alikansioista löytyy. Kiinostavalta vaikutti heti reports-kansio, mutta siellä olevissa konekohtaisissa kansioissa ei ollut MAC-numeroita, vaan transaktioista tietoja. Toinen kiinostava kansio oli var/lib/puppet/yaml/facts, jonka alla oli konekohtaisest .yaml-tiedostot. Ja sieltähän ne tarkat konekohtaiset tiedot löytyivät. Samaan aikaan master-koneeni päätti syystä tai toisesta lakata toimimasta. Kone jäätyi täydellisesti ja sain otettua vain kameralla valokuvan tuosta tiedostosta. Menetin siis taas master-koneeni ja vagrant-koneeni siinä samalla. Tämä on ollut kyllä surkeiden tapahtumien sarja koko kotitehtävän teko. Joka tapauksessa vagrantin tiedostosta siis poimin seuraavat valokuvan perusteella
 ```
