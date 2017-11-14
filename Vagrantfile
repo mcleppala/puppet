@@ -29,4 +29,9 @@ Vagrant.configure(2) do |config|
  config.vm.define "vagrant03" do |vagrant03|
  vagrant03.vm.hostname = "vagrant03"
  end 
+ 
+ config.vm.provider "virtualbox" do |vb|
+ #  Customize the amount of memory on the VM:
+ vb.memory = "256"
+ end
 end
