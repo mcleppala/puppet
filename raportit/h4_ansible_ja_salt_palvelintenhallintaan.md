@@ -4,6 +4,8 @@ Neljännen viikon [tehtävänä](http://terokarvinen.com/2017/aikataulu-palvelin
 Käytössäni oli samat koneet kuin aikaisemmassa tehtävässä, sen verran edeltävästä kerrasta viisastuneena, päätin kirjoittaa heti aloittaessani jo skriptit, joilla teen tarvittavat asennukset ja asetukset niin Ansiblea, kuin Saltia varten.
 
 ## a) Kokeile Ansiblea
+Aikaa meni noin 2 tuntia.
+
 Tein siis kaikista asennuksista [master-koneelle](https://raw.githubusercontent.com/mcleppala/puppet/master/andible/ansible-master.sh) oman skriptin samalla, kun tein asennusta ensimmäistä kertaa. Edeltävällä kerralla kun jouduin tekemään käsin asennuksia 
 12-15 kertaa, niin ajattelin nyt helpottaa ja nopeuttaa elämääni mahdollisten ongelmien tullessa eteen. Luin [Joona Leppälahden](https://github.com/joonaleppalahti/CCM/blob/master/ansible/Ansible%20raportti.md) tekemää dokumentaatiota Ansiblesta ensin, jotta käsittäisin noin suurinpiirtein mitä minun pitää tehdä. Oli mukavaa, kun materiaali oli suomenkielinen.
 
