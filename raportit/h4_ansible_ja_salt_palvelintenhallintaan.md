@@ -164,11 +164,82 @@ master: 192.168.1.101
 ```
 Sitten välttääkseni virheet tein vielä sertifikaattien hyväksymisen 
 ```
-
+xubuntu@xubuntu:~$ sudo salt-key -F master
+Local Keys:
+master.pem:  6e:b8:40:f4:c0:fd:3c:cb:a8:f5:23:b7:1c:79:c7:4b
+master.pub:  30:c0:09:93:1b:c7:c7:93:d9:da:38:f7:30:19:84:db
+Unaccepted Keys:
+xubuntu:  0c:57:9d:c4:18:c6:3b:10:41:da:01:6c:bf:de:dd:3f
+xubuntu@xubuntu:~$ sudo salt-key -A
+The following keys are going to be accepted:
+Unaccepted Keys:
+xubuntu
+Proceed? [n/Y] Y
+Key for minion xubuntu accepted.
 ```
+Sitten kokeilen pingiä, tunnilta olin kirjoittanut ylös seuraavanlaisen komennon, mutta jostain syystä minion ei vastaa
+```
+xubuntu@xubuntu:~$ sudo salt "*" test.ping
+[WARNING ] Key 'file_ignore_glob' with value None has an invalid type of NoneType, a list is required for this value
+[WARNING ] Key 'file_ignore_glob' with value None has an invalid type of NoneType, a list is required for this value
+[WARNING ] Key 'file_ignore_glob' with value None has an invalid type of NoneType, a list is required for this value
+[WARNING ] Key 'file_ignore_glob' with value None has an invalid type of NoneType, a list is required for this value
+xubuntu:
+    Minion did not return. [No response]
+xubuntu@xubuntu:~$ 
+```
+Muistelin, että jotain tämän kaltaista oli ollut myös tunnilla näytetyissä testeissä, joten käynnistin uudelleen minion-koneella Salt-minionin komennolla
+```
+sudo service salt-minion restart
+```
+Ja sitten kokeilin pingiä uudelleen master-koneella ja sain vastauksen
+```
+xubuntu@xubuntu:~$ sudo salt "*" test.ping
+[WARNING ] Key 'file_ignore_glob' with value None has an invalid type of NoneType, a list is required for this value
+[WARNING ] Key 'file_ignore_glob' with value None has an invalid type of NoneType, a list is required for this value
+[WARNING ] Key 'file_ignore_glob' with value None has an invalid type of NoneType, a list is required for this value
+[WARNING ] Key 'file_ignore_glob' with value None has an invalid type of NoneType, a list is required for this value
+xubuntu:
+    True
+xubuntu@xubuntu:~$
+```
+Googlasin vielä tuon file_ignore_glob-varoituksen ja tämän [viestiketjun](https://github.com/saltstack/salt/issues/33706) perusteella se ei ole mitään vakavaa, joten en tutkinut sitä sen enempää.
+
+Yhteys siis toimii, joten voidaan siirtyä eteenpäin. Päätin tehdä tässäkin yksinkertaisen testin, eli asentaa Apachen minionille. Olin sen jo tehnyt testatessani Ansiblea, joten poistin koneelta asennuksen komennolla ```sudo apt-get purge apache2``` ja tarkistin vielä localhostin selaimella, eikä mitään enää löytynyt. Kuva alla.
+![poistettu](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/localhost.png)
+
+Sitten ohjeiden mukaan ajoin master-koneella komennon ```sudo salt xubuntu pkg.install apache2```. Ja pienen hetken jälkeen saan vastauksen
+```
+[WARNING ] Key 'file_ignore_glob' with value None has an invalid type of NoneType, a list is required for this value
+[WARNING ] Key 'file_ignore_glob' with value None has an invalid type of NoneType, a list is required for this value
+[WARNING ] Key 'file_ignore_glob' with value None has an invalid type of NoneType, a list is required for this value
+[WARNING ] Key 'file_ignore_glob' with value None has an invalid type of NoneType, a list is required for this value
+xubuntu:
+    ----------
+    apache2:
+        ----------
+        new:
+            2.4.18-2ubuntu3.5
+        old:
+    httpd:
+        ----------
+        new:
+            1
+        old:
+    httpd-cgi:
+        ----------
+        new:
+            1
+        old:
+xubuntu@xubuntu:~$
+```
+Käyn tarkistamassa lopputuloksen vielä minion-koneelta avaamalla localhostin selaimella ja siellähän se Apachen oletussivu on. Kuva alla.
+
+![asennettu](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/localhost_salt.png)
 
 ## Lähteet
 * Tehtävänanto: http://terokarvinen.com/2017/aikataulu-palvelinten-hallinta-ict4tn022-3-5-op-uusi-ops-loppusyksy-2017-p5
 * Arctic CCM: https://github.com/joonaleppalahti/CCM
 * Joona Leppälahti, Ansible: https://github.com/joonaleppalahti/CCM/blob/master/ansible/Ansible%20raportti.md
 * Jori Laine, Salt: https://github.com/joonaleppalahti/CCM/blob/master/salt/Salt%20raportti.md
+* Saltstack: https://github.com/saltstack/salt/issues/33706
