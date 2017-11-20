@@ -10,7 +10,7 @@ sudo apt-get update
 sudo apt-get install -y salt-minion tree
 echo "*******************************************"
 echo "Muokataan /etc/ansible/hosts-tiedostoa"
-echo -e "\nmaster: 192.168.1.102\n"|sudo tee -a /etc/salt/minion
+echo -e "\nmaster: 192.168.1.101\n"|sudo tee -a /etc/salt/minion
 echo "*******************************************"
 echo "Asennus valmis"
 echo "*******************************************"
