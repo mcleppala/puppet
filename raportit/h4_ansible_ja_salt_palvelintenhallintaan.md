@@ -106,7 +106,6 @@ PLAY RECAP *********************************************************************
 ```
 Sitten vaan lisäämään Apachen asennus syntaksin mukaisesti tiedostoon, Joona kertoikin jo tunnilla pidetyssä esityksessä, ongelmista, joita oli puuttuvien käyttöoikeuksien takia ja sama oli myös hänen dokumentaatiossaan. Alla muokatun tiedoston sisältö
 ```
-
 ---
 - hosts: orja
   remote_user: xubuntu
@@ -121,7 +120,7 @@ Sitten vaan lisäämään Apachen asennus syntaksin mukaisesti tiedostoon, Joona
 
 ```
 Ensin kävin orja-koneella selaimella tarkistamassa mitä vastaa localhost ja eihän siellä mitään ollut. Kuva alla.
-
+![EiApachea](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/localhost.png)
 
 Ja sitten ajaminen komennolla ```ansible-playbook /etc/ansible/apache.yaml --ask-become-pass```. Alla ajon tulos
 ```
@@ -139,7 +138,9 @@ changed: [192.168.1.102]
 PLAY RECAP *********************************************************************
 192.168.1.102              : ok=3    changed=1    unreachable=0    failed=0   
 ```
-Ja kävin tarkistamassa tämän jälkeen orja-koneelta, oliko sille asentunut Apache ja selaimessa localhost antoi Apachen oletus-sivun, joten asennus oli mennyt läpi.
+Ja kävin tarkistamassa tämän jälkeen orja-koneelta, oliko sille asentunut Apache ja selaimessa localhost antoi Apachen oletus-sivun, joten asennus oli mennyt läpi. Kuva alla.
+![Apache](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/localhost_ansible.png)
+
 ## Lähteet
 * Tehtävänanto: http://terokarvinen.com/2017/aikataulu-palvelinten-hallinta-ict4tn022-3-5-op-uusi-ops-loppusyksy-2017-p5
 * Arctic CCM: https://github.com/joonaleppalahti/CCM
