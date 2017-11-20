@@ -144,6 +144,7 @@ Ja kävin tarkistamassa tämän jälkeen orja-koneelta, oliko sille asentunut Ap
 ![Apache](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/localhost_ansible.png)
 
 ## b) Kokeile Salt:ia
+Aikaa meni noin 1,5 tuntia.
 Seurasin myös Saltin osalta Arctic CCM:n dokumentaatiota. Tein Saltia varten skriptit, joilla saa tehtyä nopeasti niin [masterin](https://raw.githubusercontent.com/mcleppala/puppet/master/salt/salt-master.sh) kuin [minionin](https://raw.githubusercontent.com/mcleppala/puppet/master/salt/salt-minion.sh) perusasetukset livetikun asennuksen jälkeen. 
 
 Aloitin kaiken asentamalla ensin master-koneelleni Salt-Masterin komennolla
