@@ -13,5 +13,12 @@ echo "Muokataan /etc/ansible/hosts-tiedostoa"
 echo "*******************************************"
 echo -e "\n[orja]\n192.168.1.102\n"|sudo tee -a /etc/ansible/hosts
 echo "*******************************************"
+echo "Luodaan avainpari ja kopioidaan se orjalle"
+echo "*******************************************"
+cd
+cd .ssh/
+ssh-keygen -f id_rsa -t rsa -N ''
+ssh-copy-id xubuntu@192.168.1.102
+echo "*******************************************"
 echo "Asennus valmis"
 echo "*******************************************"
