@@ -68,20 +68,33 @@ Moi Minna, moduuli rokkaa!
 vagrant@vagrant01:~$ 
 ```
 
-Toisella koneella asensin Windows 10 Pro-käyttöjärjestelmän VirtualBoxiin, sillä en voinut asentaa koneeseen ko. käyttöjärjestelmää ja kouluun en ehtinyt työkiireiltäni. Tein [Teron ohjeessa](http://terokarvinen.com/2016/windows-10-as-a-puppet-slave-for-ubuntu-16-04-master) olleet muutokset asennuksen aikana koneelle, jonka nimesin idearikkaasti orjawin10:ksi. Poistin käytöstä UAC eli User Account Controllin, jotta Puppetin asennus onnistuu ongelmitta. Sitten kopioin suoraan ohjeesta [Puppetin.msi](https://downloads.puppetlabs.com/windows/puppet-3.8.5-x64.msi)-tiedoston. Tässä kohtaa buuttasin Windows 10-virtuaalikoneen, jotta välttyisin ohjeessa mainituilta ongelmilta.
+Toisella koneella asensin Windows 10 Pro-käyttöjärjestelmän VirtualBoxiin, sillä en voinut asentaa koneeseen ko. käyttöjärjestelmää ja kouluun en ehtinyt työkiireiltäni. 
+![asennusta](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/orjawin10/orjawin10_asennus1.png)
 
-Aloitin asentamaan Puppetia. Asennusohjelma kysyi kiltisti, minkäniminen on master ja syötin siihen kuvan mukaisesti master-koneeni DNS-nimen. Kun asennus oli valmis, menin tarkistamaan puppet.conf-tiedoston C:\\ProgramData\PuppetLabs\puppet\etc-kansiosta ja kuten kuvasta näkyy, on asennusohjelma lisännyt antamani tiedot Master-koneesta.
-* lisää kuva
+Tein [Teron ohjeessa](http://terokarvinen.com/2016/windows-10-as-a-puppet-slave-for-ubuntu-16-04-master) olleet muutokset asennuksen aikana koneelle, jonka nimesin idearikkaasti orjawin10:ksi.
+Poistin käytöstä UAC eli User Account Controllin, jotta Puppetin asennus onnistuu ongelmitta. Sitten kopioin suoraan ohjeesta [Puppetin.msi](https://downloads.puppetlabs.com/windows/puppet-3.8.5-x64.msi)-tiedoston. Tässä kohtaa buuttasin Windows 10-virtuaalikoneen, jotta välttyisin ohjeessa mainituilta ongelmilta.
+
+Aloitin asentamaan Puppetia. 
+![puppet_asennus](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/orjawin10/puppetin_asennus.png)
+
+Asennusohjelma kysyi kiltisti, minkäniminen on master ja syötin siihen kuvan mukaisesti master-koneeni DNS-nimen. 
+![ohjelma_kyselee](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/orjawin10/master_orjawin10.png)
+
+Kun asennus oli valmis, menin tarkistamaan puppet.conf-tiedoston C:\\ProgramData\PuppetLabs\puppet\etc-kansiosta ja kuten kuvasta näkyy, on asennusohjelma lisännyt antamani tiedot Master-koneesta.
+![puppetconf](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/orjawin10/puppetconf_win10.png)
 
 Sitten onkin edessä yhteyden testaaminen Windows-koneelta, joka ajetaan Windowsin Command Promptissa seuraavasti
 ```
 puppet agent -tdv
 ```
-Eli miltei samanlainen komento kuin Linuxissa. Mutta sain saman virheilmoituksen kuin luokassa, tämän olinkin siellä jo ratkaissut, eli Windows-koneessa olevaa hosts-tiedostoa pitää muokata siten, että lisään sinne tiedon masterista ja sen ip-osoitteen. Hosts-tiedosto löytyy Windowsista C:\\Windows\System32\drivers\etc. Ensin minun pitää antaa orjawin10-käyttäjälle käyttöoikeudet muokata sitä, jonka jälkeen lisään kuvan rivin.
-* lisää kuva
+Eli miltei samanlainen komento kuin Linuxissa. Mutta sain saman virheilmoituksen kuin luokassa, tämän olinkin siellä jo ratkaissut, eli Windows-koneessa olevaa hosts-tiedostoa pitää muokata siten, että lisään sinne tiedon masterista ja sen ip-osoitteen. Hosts-tiedosto löytyy Windowsista C:\\Windows\System32\drivers\etc. Ensin minun pitää antaa orjawin10-käyttäjälle käyttöoikeudet muokata sitä 
+![oikeudet](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/orjawin10/hosts_oikeudet_orjawin10.png)
+
+jonka jälkeen lisään kuvan rivin.
+![hosts](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/orjawin10/hosts_orjawin10.png)
 
 Tämän jälkeen ajoin testin uudestaan ja tällä kertaa en saanut virheitä, vaan Windows jää odottamaan sertin hyväksymistä. 
-* lisää kuva
+![test_pass](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/orjawin10/orjawin10_agent_test.png)
 
 Ja Master-koneella tarkistan tuliko pyyntö perille ja siellä näkyykin Windows-orjan pyyntö. Alla komento ja vastaus
 ```
@@ -98,7 +111,7 @@ class hellowindows {
 }
 ```
 Sitten kävin muokkaamassa site.pp-tiedostoa kansiossa ```/etc/puppet/manifests/```. Johon lisäsin ```class {hellowindows:}```. Ja taas testaamaan Windows-orjalla komennolla ```puppet agent -tdv```. Ja C:n juuresta löytyikin moiminna-tiedosto, jonka sisältä löytyi Masterilla kirjoittamani tervehdys.
-* lisää kuva
+![moiminna](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/orjawin10/moiminna_orjawin10.png)
 
 ## b) Säädä Windows-työpöytää. Voit esimerkiksi asentaa jonkin sovelluksen ja tehdä sille asetukset. 
 Tähän ajattelin kokeilla suoraan [Arctic CCM:n](https://github.com/joonaleppalahti/CCM/blob/master/puppet/Puppet%20moduulit%20Windows%2010%20Pro.md) tekemää ohjetta ja moduulia. Kopioin heidän tekemänsä tiedostot ```/etc/puppet/modules/```-kansioon. Alla Treen avulla kansiopuurakenne.
@@ -154,7 +167,11 @@ class asennuspaketti {
 }
 ```
 Eli asennan Gedit, Chrome, Firefox, VLC, LibreOffice ja Putty-ohjelmat Chokolateyn avulla. Sitten lisään vielä site.pp-tiedostoon ```class {asennuspaketti:}``` rivin. Ja eikun testaamaan Windows-orjalla tutulla komennolla ```puppet agent tdv```. Kone ruksuttaa hetken ja työpöydälle alkaa ilmestymään kuvakkeita asennusten edetessä. Lopuksi kaikki yllä mainitut ohjelmat löytyivät Windows-orjalta.
-* lisää kuvat
+![asennus_etenee](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/orjawin10/chokolatey_asentaa_orjawin10.png)
+
+![Libre](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/orjawin10/chokolatey_asentaa_orjawin10_2.png)
+
+![valmista](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/orjawin10/asennukset_valmiit.png)
 
 Enää sitten onkin oikeastaan jäljellä testata saanko kuvan vaihtumaan, tunnilla tämä kaatui siihen, että olimme asentaneet Windows-koneeksi Windows 10 Home-version, jossa kuvan muokkaaminen oli hankalaa. Testaan vielä miten toimii tuo wuserwall, ainakin sen pitäisi lisätä käyttäjä opiskelija. Lisään site.pp-tiedostoon rivin ```class{wuserwall:}``` ja ajan taas Windows-orjalla komennon ```puppet agent -t```. Alla vielä wuserwall-moduulin sisältö.
 ```
@@ -178,6 +195,6 @@ class wuserwall {
 }
 ```
 Saan kuitenkin saman virheen kuin tunnilla taustakuvan vaihdosta, eli se ei ratkennut vain versiota vaihtamalla. Käyttäjä opiskelija kuitenkin luotiin. Kuva alla.
-* lisää kuva
+![opiskelija](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/orjawin10/opiskelija_lisatty.png)
 
 En enää jäänyt taustakuva-asiaa selvittämään. Olin kuitenkin tehnyt tehtävää tässä vaiheessa usean tunnin ja väsy alkoi painaa.
