@@ -60,7 +60,7 @@ Ensin hain wgetin avulla puppetmaster.sh-skriptini ja ajoin sen /home/xubuntu-ka
 ```
 bash puppetmaster.sh
 ```
-Sillä asentui siis Master-kone ja yksi Ubuntu 16.04 Vagrant-orja noin 10 minuutissa. Testasin, että kaikki on kunnossa laittamalla yksinkertaisen tekstitiedoston Vagrant-orjan /tmp/-hakemistoon. Alla ote terminaalista.
+Sillä asentui siis Master-kone ja yksi Ubuntu 16.04 Vagrant-orja noin 10 minuutissa. Testasin, että kaikki on kunnossa tekemällä yksinkertaisen moduulin, joka tekee Vagrant-orjan /tmp/-hakemistoon yksinkertaisen tervehdyksen. Alla ote terminaalista.
 ```
 Debug: Closing connection for https://master:8140
 vagrant@vagrant01:~$ cat /tmp/moiminna 
