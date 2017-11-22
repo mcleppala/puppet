@@ -194,7 +194,10 @@ class wuserwall {
         }
 }
 ```
-Saan kuitenkin saman virheen kuin tunnilla taustakuvan vaihdosta, eli se ei ratkennut vain versiota vaihtamalla. Käyttäjä opiskelija kuitenkin luotiin. Kuva alla.
+Saan kuitenkin saman virheen kuin tunnilla taustakuvan vaihdosta, oikeudet eivät riitä kuvan muokkaukseen. Eli se ei ratkennut vain versiota vaihtamalla. 
+![wuserwall](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/orjawin10/wuserwall_virhe.png)
+
+Käyttäjä opiskelija kuitenkin luotiin. Kuva alla.
 ![opiskelija](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/orjawin10/opiskelija_lisatty.png)
 
 En enää jäänyt taustakuva-asiaa selvittämään. Olin kuitenkin tehnyt tehtävää tässä vaiheessa usean tunnin ja väsy alkoi painaa.
