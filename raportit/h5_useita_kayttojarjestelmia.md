@@ -201,3 +201,11 @@ Käyttäjä opiskelija kuitenkin luotiin. Kuva alla.
 ![opiskelija](https://raw.githubusercontent.com/mcleppala/puppet/master/kuvat/orjawin10/opiskelija_lisatty.png)
 
 En enää jäänyt taustakuva-asiaa selvittämään. Olin kuitenkin tehnyt tehtävää tässä vaiheessa usean tunnin ja väsy alkoi painaa.
+
+## Lähteet
+* Tehtävänanto: http://terokarvinen.com/2017/aikataulu-palvelinten-hallinta-ict4tn022-3-5-op-uusi-ops-loppusyksy-2017-p5#comment-23294
+* Master/Vagrant-skripti: https://github.com/mcleppala/puppet/blob/master/puppetmaster.sh
+* Windows 10 Pro: https://www.microsoft.com/en-gb/software-download/windows10ISO).
+* Tero Karvinen, Windows-slave-ohje: http://terokarvinen.com/2016/windows-10-as-a-puppet-slave-for-ubuntu-16-04-master
+* Arctic CCM: https://github.com/joonaleppalahti/CCM/blob/master/puppet/Puppet%20moduulit%20Windows%2010%20Pro.md
+* Tero Karvinen, Chokolatey-ohje: http://terokarvinen.com/2016/automatically-install-a-list-of-software-to-windows-chocolatey-puppet-provider
